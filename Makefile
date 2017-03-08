@@ -15,10 +15,12 @@ LIB = ./libft
 
 all: lib $(NAME)
 
-$(NAME): $(OBJ)
-				@echo Compiling $(NAME)
+$(NAME): $(OBJ) lem_in_ok
 				@$(GCC) $(FLAGS) -o $(NAME) $(OBJ) -I $(INC) -L $(LIB) -lft
-				@echo ======[Done]======
+				@echo "> \\033[4;m$(NAME)\\033[0m  :  [\\033[38;5;214mOK\\033[0m]"
+
+lem_in_ok :
+			@echo -n \
 
 $(OBJ): ./obj/%.o : ./src/%.c
 				@echo "$(NAME) >>> Add/Update $^"
