@@ -1,37 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_signed_integer.c                             :+:      :+:    :+:   */
+/*   ft_index.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/09 16:14:19 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/09 16:36:13 by vomnes           ###   ########.fr       */
+/*   Created: 2017/03/09 10:05:20 by vomnes            #+#    #+#             */
+/*   Updated: 2017/03/09 11:03:53 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "lem_in.h"
+# include "includes/libft.h"
 
-int ft_is_signed_integer(char *str)
+int ft_index(const char *s, int c)
 {
-	long long int value;
-	int index;
+	char *ptr;
 
-	value = 0;
-	index = 0;
-	if (ft_isdigitstr(str) == -1)
+	ptr = ft_strchr(s, c);
+	if (ptr == NULL)
 		return (-1);
 	else
-	{
-		value = ft_lltoi(str);
-		if (value > 2147483648 || value < 0)
-			return (-1);
-		while(str[index])
-		{
-			if (index > 9)
-				return (-1);
-			index++;
-		}
-	}
-	return (0);
+		return (ptr - s);
 }

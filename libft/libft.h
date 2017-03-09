@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vomnes <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 15:09:57 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/04 11:00:54 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/09 10:36:26 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ char				*ft_strcat(char *dest, const char *src);
 char				*ft_strncat(char *dest, const char *src, size_t n);
 size_t				ft_strlcat(char *dest, const char *src, size_t size);
 char				*ft_strchr(const char *s, int c);
+int					ft_index(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strstr(const char *haystack, const char *needle);
 char				*ft_strnstr(const char *big, const char *little,

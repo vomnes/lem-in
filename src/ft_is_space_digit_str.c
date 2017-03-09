@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_signed_integer.c                             :+:      :+:    :+:   */
+/*   ft_is_space_digit_str.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/09 16:14:19 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/09 16:36:13 by vomnes           ###   ########.fr       */
+/*   Created: 2017/03/09 16:28:24 by vomnes            #+#    #+#             */
+/*   Updated: 2017/03/09 18:16:22 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "lem_in.h"
 
-int ft_is_signed_integer(char *str)
+int	ft_is_space_digit_str(char *str)
 {
-	long long int value;
-	int index;
+	int i;
 
-	value = 0;
-	index = 0;
-	if (ft_isdigitstr(str) == -1)
-		return (-1);
-	else
+	i = 0;
+	while (str[i])
 	{
-		value = ft_lltoi(str);
-		if (value > 2147483648 || value < 0)
+		if (!(ft_isdigit(str[i])) && !(ft_isspace(str[i])))
 			return (-1);
-		while(str[index])
-		{
-			if (index > 9)
-				return (-1);
-			index++;
-		}
+		i++;
 	}
 	return (0);
 }

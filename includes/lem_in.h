@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:32:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/08 18:02:52 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/09 16:41:14 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 typedef struct		s_data
 {
 	struct s_data	*next;
+	char			*name;
 	int				coord_x;
 	int				coord_y;
-	char			*name;
 	char 			statut;
 }					t_data;
 
@@ -43,5 +43,15 @@ typedef struct 		s_collect
 {
 
 }					t_env;*/
+
+int check_number(char *line);
+int collect_number(char *line, int *i);
+int	ft_isdigitstr(char *str);
+int ft_is_signed_integer(char *str);
+int count_space(char *line);
+int	ft_is_space_digit_str(char *str);
+
+int get_input(void);
+int data_validation(void);
 
 #endif

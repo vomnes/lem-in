@@ -16,7 +16,7 @@ SRC = ft_lstadd.c ft_memdel.c	ft_strcat.c	ft_strlcat.c ft_strrchr.c \
 			ft_lst_strsplit.c ft_strnjoin.c ft_strndup.c ft_strddel.c ft_itoa_base.c \
 			ft_strcjoin.c ft_putwchar.c ft_putwstr.c ft_wstrlen.c ft_lltoa.c \
 			ft_lltoi.c ft_putnwstr.c ft_isxdigit.c ft_pow.c ft_hex_to_dec.c \
-			get_next_line.c
+			get_next_line.c ft_index.c
 SRC_PF =	./ft_printf/check_errors.c ./ft_printf/convert_binary.c \
 			./ft_printf/convert_char.c ./ft_printf/convert_date.c \
 			./ft_printf/convert_hex.c ./ft_printf/convert_octal.c \

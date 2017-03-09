@@ -6,62 +6,11 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 16:51:10 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/09 13:21:36 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/09 16:17:08 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "lem_in.h"
-/*
-static int	ft_isdigitstr(char *str)
-{
-	int i;
-
-	i = 0;
-	if (str[i] == '-')
-		i++;
-	while (str[i])
-	{
-		if (!(ft_isdigit(str[i])))
-			return (-1);
-		i++;
-	}
-	return (1);
-}
-*/
-/*if (ft_isdigitstr(argv[i + 1]) == -1)
-{
-	ft_putendl_fd("Error", 2);
-	return (-1);
-}
-else if (ft_lltoi(argv[i + 1]) >= 2147483648
-|| ft_lltoi(argv[i + 1]) < -2147483648
-|| ft_strcmp(argv[i + 1], "-") == 0)
-{
-	ft_putendl_fd("Error", 2);
-	return (-1);
-}*/
-
-int collect_number(char *line, int *i)
-{
-	char str_number[10];
-	int number;
-	int index;
-
-	index = 0;
-	ft_bzero(str_number, 10);
-	while(ft_isdigit(line[*i]))
-	{
-		if (index > 9)
-			return (-1);
-		str_number[index] = line[*i];
-		index++;
-		(*i)++;
-	}
-	number = ft_lltoi(str_number);
-	if (number > 2147483647 || number < 0)
-		return (-1);
-	return (number);
-}
 
 int get_x_y(char *line, t_collect *collect)
 {

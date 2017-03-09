@@ -1,7 +1,24 @@
 NAME = lem-in
 
-SRC = ./src/main.c
-OBJ = ./obj/main.o
+SRC =	./src/main.c \
+		./src/parsing_input.c \
+		./src/check_number.c \
+		./src/collect_number.c \
+		./src/count_space.c \
+		./src/ft_is_signed_integer.c \
+		./src/ft_is_space_digit_str.c \
+		./src/ft_isdigitstr.c \
+		./src/data_validation.c
+
+OBJ =	./obj/main.o \
+		./obj/parsing_input.o \
+		./obj/check_number.o \
+		./obj/collect_number.o \
+		./obj/count_space.o \
+		./obj/ft_is_signed_integer.o \
+		./obj/ft_is_space_digit_str.o \
+		./obj/ft_isdigitstr.o \
+		./obj/data_validation.o
 
 MAKE = make
 
