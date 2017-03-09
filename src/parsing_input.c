@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 16:51:10 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/09 13:03:46 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/09 13:21:36 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,10 @@ int collect_number(char *line, int *i)
 	int index;
 
 	index = 0;
-	ft_putendl(line);
 	ft_bzero(str_number, 10);
 	while(ft_isdigit(line[*i]))
 	{
-		ft_printf("i : %c\n", line[*i]);
-		if (index > 10)
+		if (index > 9)
 			return (-1);
 		str_number[index] = line[*i];
 		index++;
@@ -128,8 +126,8 @@ int get_input(void)
 				return (-1);
 			if (get_x_y(ft_strchr(line, ' '), &collect) == -1)
 				return (-1);
-			ft_printf("coord_x : %3d | coord_y : %3d | name : %11s | statut : %d\n", \
-			collect.coord_x, collect.coord_y, collect.name, collect.statut);
+			ft_printf("name : %11s | coord_x : %3d | coord_y : %3d | statut : %d\n", \
+			collect.name, collect.coord_x, collect.coord_y, collect.statut);
 		}
 		else if (ft_strchr(line, '-') != NULL)
 		{
