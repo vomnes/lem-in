@@ -1,24 +1,24 @@
-10
+25
 ##start
-1 23 3
-2 16 7
+__Start@@#! 23 3
+2 21 7
 #comment
-3 16 3
+Way! 1 3
 4 16 5
-5 9 3
+5 9 9
 6 1 5
 7 4 8
 ##end
-0 9 5
-0-4
-0-6
-1-3
-4-3
+FiNiSh! 9 5
+FiNiSh!-4
+FiNiSh!-6
+__Start@@#!-Way!
+4-Way!
 5-2
-3-5
+Way!-5
 # another comment
 4-2
-2-1
+2-__Start@@#!
 7-6
 7-2
 7-4
