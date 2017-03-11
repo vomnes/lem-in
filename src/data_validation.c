@@ -25,17 +25,41 @@ char	*ft_strjoin_free(char *s1, char *s2)
 int ft_check_x_y_ligne(char *line, char **stock_name)
 {
 	char *remain;
+	char *name;
+	char x_collected;
+	int i;
 
 	if (*line == 'L')
 		return (-1);
-	*stock_name = ft_strjoin_free(*stock_name, ft_strsub(line, 0,\
-	ft_index(line, ' ')));
+	name = ft_strndup(line, ft_index(line, ' '));
+	*stock_name = ft_strjoin_free(*stock_name, name);
+	ft_strdel(&name);
 	*stock_name = ft_strjoin_free(*stock_name, " ");
 	remain = ft_strchr(line, ' ');
-	//ft_printf("name : %s <-> remain : %s\n", name, remain);
 	if (ft_is_space_digit_str(remain) == -1)
 		return (-1);
 	ft_printf("remain : %s\n", remain);
+	i = 0;
+	x_collected = 0;
+	while (line[i])
+	{
+		if (ft_isdigit(line[i]))
+		{
+			if (x_collected == 0)
+			{
+				if (collect_number(line, &i) == -1)
+					return (-1);
+				x_collected = 1;
+			}
+			else if (x_collected == 1)
+			{
+				if (collect_number(line, &i) == -1)
+					return (-1);
+				return (0);
+			}
+		}
+		i++;
+	}
 	return (0);
 }
 
