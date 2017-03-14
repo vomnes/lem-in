@@ -8,6 +8,9 @@ SRC =	./src/main.c \
 		./src/ft_is_signed_integer.c \
 		./src/ft_is_space_digit_str.c \
 		./src/ft_isdigitstr.c \
+		./src/check_link.c \
+		./src/ft_strjoin_free.c \
+		./src/check_x_y_line.c \
 		./src/data_validation.c
 
 OBJ =	./obj/main.o \
@@ -18,6 +21,9 @@ OBJ =	./obj/main.o \
 		./obj/ft_is_signed_integer.o \
 		./obj/ft_is_space_digit_str.o \
 		./obj/ft_isdigitstr.o \
+		./obj/check_link.o \
+		./obj/ft_strjoin_free.o \
+		./obj/check_x_y_line.o \
 		./obj/data_validation.o
 
 MAKE = make

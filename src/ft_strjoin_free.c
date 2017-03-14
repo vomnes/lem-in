@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/08 10:43:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/14 18:22:30 by vomnes           ###   ########.fr       */
+/*   Created: 2017/03/14 17:48:52 by vomnes            #+#    #+#             */
+/*   Updated: 2017/03/14 17:48:54 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+# include "lem_in.h"
 
-int main(int argc, char **argv)
+char	*ft_strjoin_free(char *s1, char *s2)
 {
-	int num_line;
-	(void)argv;
+	char *tmp;
 
-	num_line = 0;
-	if (argc == 0 || argc == 1)
-	{
-		if (data_validation(&num_line) == -1)
-		{
-			ft_putstr_fd("ERROR", 2);
-			ft_putstr_fd(" - [Line ", 2);
-			ft_putnbr_fd(num_line, 2);
-			ft_putstr_fd("]\n", 2);
-			return (-1);
-		}
-	}
-	else
-	{
-		ft_putendl("Usage : ./lem-in < [map_name]");
-		return (0);
-	}
-	return (0);
+	tmp = s1;
+	s1 = ft_strjoin(tmp, s2);
+	ft_strdel(&tmp);
+	return (s1);
 }

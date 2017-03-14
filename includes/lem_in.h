@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:32:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/09 16:41:14 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/14 17:51:23 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ int ft_is_signed_integer(char *str);
 int count_space(char *line);
 int	ft_is_space_digit_str(char *str);
 
+char	*ft_strjoin_free(char *s1, char *s2);
 int get_input(void);
-int data_validation(void);
+int check_x_y_line(char *line, char **stock_name, char **stock_coord);
+int check_link(char *line, char *stock_name);
+int data_validation(int *num_line);
 
 #endif
