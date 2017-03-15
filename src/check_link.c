@@ -6,13 +6,13 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 15:36:48 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/15 14:42:04 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/15 15:18:35 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "lem_in.h"
+#include "lem_in.h"
 
-static int ft_malloc_link(char **tmp_pn1, char **tmp_pn2, \
+static int	ft_malloc_link(char **tmp_pn1, char **tmp_pn2, \
 char **parse_name_1, char **parse_name_2)
 {
 	if (!(*tmp_pn1 = ft_strnew(ft_strlen(*parse_name_1) + 2)))
@@ -28,18 +28,20 @@ char **parse_name_1, char **parse_name_2)
 	return (0);
 }
 
-static void ft_free_all(char **tmp_pn1, char **tmp_pn2)
+static void	ft_free_all(char **tmp_pn1, char **tmp_pn2)
 {
 	ft_strdel(&(*tmp_pn1));
 	ft_strdel(&(*tmp_pn2));
 }
 
-static int ft_link_errors(char **parse_name_1, char **parse_name_2, char *stock_name)
+static int	ft_link_errors(char **parse_name_1, char **parse_name_2, \
+char *stock_name)
 {
 	char *tmp_pn1;
 	char *tmp_pn2;
 
-	if (ft_malloc_link(&tmp_pn1, &tmp_pn2, &(*parse_name_1), &(*parse_name_2)) == -1)
+	if (ft_malloc_link(&tmp_pn1, &tmp_pn2, &(*parse_name_1),\
+	&(*parse_name_2)) == -1)
 		return (-1);
 	if (ft_strcmp(*parse_name_1, *parse_name_2) == 0)
 	{
@@ -60,17 +62,18 @@ static int ft_link_errors(char **parse_name_1, char **parse_name_2, char *stock_
 	return (0);
 }
 
-int check_link(char *line, char *stock_name)
+int			check_link(char *line, char *stock_name)
 {
-	char *parse_name_1;
-	char *parse_name_2;
-	int ret;
+	char	*parse_name_1;
+	char	*parse_name_2;
+	int		ret;
 
 	if (ft_strchr(line, '-') != NULL)
 	{
 		parse_name_1 = ft_strndup(line, ft_index(line, '-'));
 		parse_name_2 = ft_strchr(line, '-') + 1;
-		if((ret = ft_link_errors(&parse_name_1, &parse_name_2, stock_name)) < 0)
+		if ((ret = ft_link_errors(&parse_name_1, &parse_name_2,\
+		stock_name)) < 0)
 		{
 			ft_strdel(&parse_name_1);
 			return (ret);

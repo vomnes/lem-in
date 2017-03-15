@@ -6,13 +6,13 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 17:48:09 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/15 14:16:26 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/15 15:21:36 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "lem_in.h"
+#include "lem_in.h"
 
-static int ft_malloc_link(char **tmp_name, char *name)
+static int	ft_malloc_link(char **tmp_name, char *name)
 {
 	if (!(*tmp_name = ft_strnew(ft_strlen(name) + 3)))
 		return (-1);
@@ -22,10 +22,10 @@ static int ft_malloc_link(char **tmp_name, char *name)
 	return (0);
 }
 
-static int check_coord_number(char *line)
+static int	check_coord_number(char *line)
 {
-	char x_collected;
-	int i;
+	char	x_collected;
+	int		i;
 
 	i = 0;
 	x_collected = 0;
@@ -51,7 +51,7 @@ static int check_coord_number(char *line)
 	return (0);
 }
 
-static int first_check(char *line, char **name)
+static int	first_check(char *line, char **name)
 {
 	if (*line == 'L')
 		return (-104);
@@ -65,11 +65,11 @@ static int first_check(char *line, char **name)
 	return (0);
 }
 
-static int coord_xy(char *line, char **stock_coord)
+static int	coord_xy(char *line, char **stock_coord)
 {
-	int ret;
-	char *remain;
-	char *remain_tmp;
+	int		ret;
+	char	*remain;
+	char	*remain_tmp;
 
 	ret = 0;
 	remain = ft_strchr(line, ' ');
@@ -78,7 +78,7 @@ static int coord_xy(char *line, char **stock_coord)
 	remain_tmp = ft_strdup(remain + 1);
 	if (ft_strstr(*stock_coord, remain + 1) != NULL)
 		return (-108);
-	if(!(*stock_coord = ft_strjoin_free(*stock_coord, remain_tmp)))
+	if (!(*stock_coord = ft_strjoin_free(*stock_coord, remain_tmp)))
 		return (-1);
 	ft_strdel(&remain_tmp);
 	if (!(*stock_coord = ft_strjoin_free(*stock_coord, "_")))
@@ -88,11 +88,11 @@ static int coord_xy(char *line, char **stock_coord)
 	return (0);
 }
 
-int check_x_y_line(char *line, char **stock_name, char **stock_coord)
+int			check_x_y_line(char *line, char **stock_name, char **stock_coord)
 {
-	char *name;
-	char *tmp_name;
-	int ret;
+	char	*name;
+	char	*tmp_name;
+	int		ret;
 
 	ret = 0;
 	if ((ret = first_check(line, &name)) < 0)

@@ -6,15 +6,15 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 13:28:32 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/15 15:09:59 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/15 15:24:11 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "lem_in.h"
+#include "lem_in.h"
 
 #define LINE val->line
 
-static int init_val(t_validation *val)
+static int	init_val(t_validation *val)
 {
 	val->line = NULL;
 	val->space = 0;
@@ -30,7 +30,7 @@ static int init_val(t_validation *val)
 	return (0);
 }
 
-static int last_check(t_validation *val)
+static int	last_check(t_validation *val)
 {
 	if (val->nb_ant_ok == 0)
 		return (-60);
@@ -43,7 +43,7 @@ static int last_check(t_validation *val)
 	return (0);
 }
 
-static int global_analyse(t_validation *val)
+static int	global_analyse(t_validation *val)
 {
 	int ret;
 
@@ -70,7 +70,7 @@ static int global_analyse(t_validation *val)
 	return (0);
 }
 
-int data_validation(int *num_line, t_validation *val)
+int			data_validation(int *num_line, t_validation *val)
 {
 	int ret;
 

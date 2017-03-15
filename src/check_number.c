@@ -6,21 +6,21 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 16:15:42 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/09 16:15:51 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/15 15:19:28 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "lem_in.h"
+#include "lem_in.h"
 
-int check_number(char *line)
+int	check_number(char *line)
 {
-	char str_number[10];
-	int number;
-	int index;
+	char	str_number[10];
+	int		number;
+	int		index;
 
 	index = 0;
 	ft_bzero(str_number, 10);
-	while(ft_isdigit(line[index]))
+	while (ft_isdigit(line[index]))
 	{
 		if (index > 9)
 			return (-1);

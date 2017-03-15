@@ -6,20 +6,20 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:43:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/15 14:53:36 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/15 15:28:43 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void ft_kill_char(char **stock_coord, char **stock_name, char **line)
+static void	ft_kill_char(char **stock_coord, char **stock_name, char **line)
 {
 	ft_strdel(&(*stock_coord));
 	ft_strdel(&(*stock_name));
 	ft_strdel(&(*line));
 }
 
-static void code_error_one(int code)
+static void	code_error_one(int code)
 {
 	(code == -10) ? ft_putstr_fd("Ant Number : Wrong format", 2) : (void)code;
 	(code == -20) ? ft_putstr_fd("Must have only one start", 2) : (void)code;
@@ -34,7 +34,7 @@ static void code_error_one(int code)
 	(code == -90) ? ft_putstr_fd("No command end", 2) : (void)code;
 }
 
-static void code_error_two(int code)
+static void	code_error_two(int code)
 {
 	(code == -91) ? ft_putstr_fd("Wrong format", 2) : (void)code;
 	(code == -1) ? ft_putstr_fd("Malloc failed", 2) : (void)code;
@@ -42,25 +42,25 @@ static void code_error_two(int code)
 	(code == -93) ? ft_putstr_fd("Name_1 does not exist", 2) : (void)code;
 	(code == -94) ? ft_putstr_fd("Name_2 does not exist", 2) : (void)code;
 	(code == -101) ? ft_putstr_fd("Coordinate x : Wrong format", 2)\
-	 : (void)code;
+	: (void)code;
 	(code == -102) ? ft_putstr_fd("Coordinate y : Wrong format", 2)\
-	 : (void)code;
+	: (void)code;
 	(code == -104) ? ft_putstr_fd("Name must not start by character 'L'", 2)\
-	 : (void)code;
+	: (void)code;
 	(code == -105) ? ft_putstr_fd("Character '-' not allowed in name", 2)\
-	 : (void)code;
+	: (void)code;
 	(code == -106) ? ft_putstr_fd("Name already used", 2) : (void)code;
 	(code == -107) ? ft_putstr_fd("Coordinates : Wrong format", 2) : (void)code;
 	(code == -108) ? ft_putstr_fd("Coordinates already used", 2) : (void)code;
 }
 
-int main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
-	int num_line;
-	t_validation validation;
-	int ret;
-	(void)argv;
+	int				num_line;
+	t_validation	validation;
+	int				ret;
 
+	(void)argv;
 	num_line = 0;
 	if (argc == 0 || argc == 1)
 	{

@@ -6,15 +6,15 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 15:07:53 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/15 15:10:08 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/15 15:15:51 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "lem_in.h"
+#include "lem_in.h"
 
 #define LINE val->line
 
-static int check_hash_line(t_validation *val)
+static int	check_hash_line(t_validation *val)
 {
 	if (ft_strcmp(LINE, "##start") == 0 && val->start_ok == 1)
 		return (-20);
@@ -37,14 +37,14 @@ static int check_hash_line(t_validation *val)
 	return (0);
 }
 
-static void flags_counts(t_validation *val)
+static void	flags_counts(t_validation *val)
 {
 	val->end_flag = 0;
 	val->count_room += 1;
 	val->start_flag = 0;
 }
 
-int analyse_line(int *ret, t_validation *val)
+int			analyse_line(int *ret, t_validation *val)
 {
 	if (*LINE == '#')
 		*ret = check_hash_line(val);
