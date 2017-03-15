@@ -11,6 +11,8 @@ SRC =	./src/main.c \
 		./src/check_link.c \
 		./src/ft_strjoin_free.c \
 		./src/check_x_y_line.c \
+		./src/analyse_line.c \
+		./src/implementation_data_val.c \
 		./src/data_validation.c
 
 OBJ =	./obj/main.o \
@@ -24,6 +26,8 @@ OBJ =	./obj/main.o \
 		./obj/check_link.o \
 		./obj/ft_strjoin_free.o \
 		./obj/check_x_y_line.o \
+		./obj/analyse_line.o \
+		./obj/implementation_data_val.o \
 		./obj/data_validation.o
 
 MAKE = make
