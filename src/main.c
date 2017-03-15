@@ -6,19 +6,21 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:43:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/15 16:15:46 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/15 16:29:07 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int			main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	(void)argv;
 	if (argc == 0 || argc == 1)
 	{
 		if (implementation_data_val() == -1)
 			return (-1);
+//		if (get_input() == -1)
+//			return (-1);
 	}
 	else
 	{

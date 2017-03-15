@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 16:51:10 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/09 16:17:08 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/15 16:23:01 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,11 @@ int get_input(void)
 			ft_printf("name : %11s | coord_x : %3d | coord_y : %3d | statut : %d\n", \
 			collect.name, collect.coord_x, collect.coord_y, collect.statut);
 		}
-		else if (ft_strchr(line, '-') != NULL)
+/*		else if (ft_strchr(line, '-') != NULL)
 		{
 
 		}
-		init_collect(&collect);
+*/		init_collect(&collect);
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);

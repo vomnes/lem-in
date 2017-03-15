@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 15:36:48 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/15 15:18:35 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/15 18:38:17 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ int			check_link(char *line, char *stock_name)
 
 	if (ft_strchr(line, '-') != NULL)
 	{
-		parse_name_1 = ft_strndup(line, ft_index(line, '-'));
+		if (!(parse_name_1 = ft_strndup(line, ft_index(line, '-'))))
+			return (-1);
 		parse_name_2 = ft_strchr(line, '-') + 1;
 		if ((ret = ft_link_errors(&parse_name_1, &parse_name_2,\
 		stock_name)) < 0)

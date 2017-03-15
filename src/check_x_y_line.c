@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 17:48:09 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/15 15:21:36 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/15 18:49:00 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ static int	coord_xy(char *line, char **stock_coord)
 	remain = ft_strchr(line, ' ');
 	if (ft_is_space_digit_str(remain) == -1)
 		return (-107);
-	remain_tmp = ft_strdup(remain + 1);
+	if (!(remain_tmp = ft_strdup(remain + 1)))
+		return (-1);
 	if (ft_strstr(*stock_coord, remain + 1) != NULL)
 		return (-108);
 	if (!(*stock_coord = ft_strjoin_free(*stock_coord, remain_tmp)))
