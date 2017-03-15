@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 13:28:32 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/15 12:24:27 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/15 12:59:57 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define LINE val->line
 
-void init_val(t_validation *val)
+static int init_val(t_validation *val)
 {
 	val->line = NULL;
 	val->space = 0;
@@ -23,9 +23,11 @@ void init_val(t_validation *val)
 	val->end_ok = 0;
 	val->end_flag = 0;
 	val->count_room = 0;
-	val->stock_name = ft_strdup(" ");
-	val->stock_coord = ft_strdup("_");
-	val->code_error = -1;
+	if (!(val->stock_name = ft_strdup(" ")))
+		return (-1);
+	if (!(val->stock_coord = ft_strdup("_")))
+		return (-1);
+	return (0);
 }
 
 int data_validation(int *num_line, t_validation *val)
@@ -33,7 +35,8 @@ int data_validation(int *num_line, t_validation *val)
 	int ret;
 
 	ret = 0;
-	init_val(val);
+	if (init_val(val) == -1)
+		return (-1);
 	while (get_next_line(0, &LINE) > 0)
 	{
 		(*num_line)++;
@@ -72,6 +75,8 @@ int data_validation(int *num_line, t_validation *val)
 			}
 			else if (val->space == 0 && val->end_flag == 0)
 			{
+				if (ft_strchr(LINE, '-') == NULL)
+					return (-50);
 				if ((ret = check_link(LINE, val->stock_name)) < 0)
 					return (ret);
 			}

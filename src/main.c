@@ -6,41 +6,18 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:43:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/15 12:24:12 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/15 13:03:44 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void ft_kill_char(char **stock_coord, char **stock_name, char **line)
+static void ft_kill_char(char **stock_coord, char **stock_name, char **line)
 {
 	ft_strdel(&(*stock_coord));
 	ft_strdel(&(*stock_name));
 	ft_strdel(&(*line));
 }
-
-/*
-"Ant Number : Wrong format - "
-"Must have only one start - "
-"Command end must followed by : name <coord_x> <coord_y> - "
-"Command start must followed by : name <coord_x> <coord_y> - "
-"Wrong format - "
-"No ants - "
-"No room - "
-"No command start - "
-"No command end - "
-
-"Wrong format - "
-"Name_1 = Name_2 - "
-"Name_1 does not exist - "
-"Name_2 does not exist - "
-
-L
-" Character '-' not allowed in name - "
-" already exist - "
-"Coordinates wrong format - "
-"Coordinates already used - "
-*/
 
 static void code_error_one(int code)
 {
