@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 15:36:48 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/14 17:25:30 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/15 10:25:23 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,17 @@ static int ft_link_errors(char **parse_name_1, char **parse_name_2, char *stock_
 	if (ft_strcmp(*parse_name_1, *parse_name_2) == 0)
 	{
 		ft_free_all(&tmp_pn1, &tmp_pn2);
-		ft_putstr_fd("Name_1 = Name_2 - ", 2);
-		return (-1);
+		return (-92);
 	}
 	if (ft_strstr(stock_name, tmp_pn1) == NULL)
 	{
 		ft_free_all(&tmp_pn1, &tmp_pn2);
-		ft_putstr_fd("Name_1 does not exist - ", 2);
-		return (-1);
+		return (-93);
 	}
 	if (ft_strstr(stock_name, tmp_pn2) == NULL)
 	{
 		ft_free_all(&tmp_pn1, &tmp_pn2);
-		ft_putstr_fd("Name_2 does not exist - ", 2);
-		return (-1);
+		return (-94);
 	}
 	ft_free_all(&tmp_pn1, &tmp_pn2);
 	return (0);
@@ -67,23 +64,22 @@ int check_link(char *line, char *stock_name)
 {
 	char *parse_name_1;
 	char *parse_name_2;
+	int ret;
 
 	if (ft_strchr(line, '-') != NULL)
 	{
 		parse_name_1 = ft_strndup(line, ft_index(line, '-'));
 		parse_name_2 = ft_strchr(line, '-') + 1;
-		if(ft_link_errors(&parse_name_1, &parse_name_2, stock_name) == -1)
+		if((ret = ft_link_errors(&parse_name_1, &parse_name_2, stock_name)) < 0)
 		{
 			ft_strdel(&parse_name_1);
-			return (-1);
+			return (ret);
 		}
-//		ft_printf(Y_GREEN"Link OK\n"RESET);
 	}
 	else
 	{
 		ft_strdel(&parse_name_1);
-		ft_putstr_fd("Wrong format - ", 2);
-		return (-1);
+		return (-91);
 	}
 	ft_strdel(&parse_name_1);
 	return (0);

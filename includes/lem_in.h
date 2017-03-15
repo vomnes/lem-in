@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:32:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/14 17:51:23 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/15 11:49:26 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,21 @@ typedef struct 		s_collect
 	short 			statut;
 }					t_collect;
 
+typedef struct 		s_validation
+{
+	char 			*line;
+	char 			nb_ant_ok;
+	char 			start_ok;
+	char 			start_flag;
+	int 			end_ok;
+	char 			end_flag;
+	int 			space;
+	char 			*stock_name;
+	char 			*stock_coord;
+	int 			count_room;
+	int 			code_error;
+}					t_validation;
+
 /*typedef struct 		s_env
 {
 
@@ -55,6 +70,6 @@ char	*ft_strjoin_free(char *s1, char *s2);
 int get_input(void);
 int check_x_y_line(char *line, char **stock_name, char **stock_coord);
 int check_link(char *line, char *stock_name);
-int data_validation(int *num_line);
+int data_validation(int *num_line, t_validation *val);
 
 #endif

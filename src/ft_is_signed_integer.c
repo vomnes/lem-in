@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 16:14:19 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/09 16:36:13 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/15 12:21:27 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int ft_is_signed_integer(char *str)
 	else
 	{
 		value = ft_lltoi(str);
-		if (value > 2147483648 || value < 0)
+		if (value > 2147483648 || value <= 0)
 			return (-1);
 		while(str[index])
 		{
