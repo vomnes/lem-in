@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 15:36:48 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/15 10:25:23 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/15 14:42:04 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,9 @@ int check_link(char *line, char *stock_name)
 			ft_strdel(&parse_name_1);
 			return (ret);
 		}
+		ft_strdel(&parse_name_1);
 	}
 	else
-	{
-		ft_strdel(&parse_name_1);
-		return (-91);
-	}
-	ft_strdel(&parse_name_1);
+		return (-50);
 	return (0);
 }

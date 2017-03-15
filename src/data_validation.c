@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 13:28:32 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/15 12:59:57 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/15 15:09:59 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,46 @@ static int init_val(t_validation *val)
 	return (0);
 }
 
+static int last_check(t_validation *val)
+{
+	if (val->nb_ant_ok == 0)
+		return (-60);
+	if (val->count_room == 0)
+		return (-70);
+	if (val->start_ok == 0)
+		return (-80);
+	if (val->end_ok == 0)
+		return (-90);
+	return (0);
+}
+
+static int global_analyse(t_validation *val)
+{
+	int ret;
+
+	ret = 0;
+	val->space = count_space(LINE);
+	if (ft_isdigitstr(LINE) == 1 && ft_is_signed_integer(LINE) == 0\
+	&& *LINE != '\0' && val->nb_ant_ok == 0)
+	{
+		val->nb_ant_ok = 1;
+		ft_strdel(&LINE);
+	}
+	else if ((ft_isdigitstr(LINE) == 0 || ft_is_signed_integer(LINE) == -1\
+	|| *LINE != '\0') && val->nb_ant_ok == 0)
+		return (-10);
+	else if (val->nb_ant_ok == 1)
+	{
+		analyse_line(&ret, val);
+		if (ret < 0)
+			return (ret);
+	}
+	else
+		return (-60);
+	ft_strdel(&LINE);
+	return (0);
+}
+
 int data_validation(int *num_line, t_validation *val)
 {
 	int ret;
@@ -40,74 +80,10 @@ int data_validation(int *num_line, t_validation *val)
 	while (get_next_line(0, &LINE) > 0)
 	{
 		(*num_line)++;
-		val->space = count_space(LINE);
-		if (ft_isdigitstr(LINE) == 1 && ft_is_signed_integer(LINE) == 0\
-		&& *LINE != '\0' && val->nb_ant_ok == 0)
-		{
-			val->nb_ant_ok = 1;
-			ft_strdel(&LINE);
-		}
-		else if ((ft_isdigitstr(LINE) == 0 || ft_is_signed_integer(LINE) == -1\
-		|| *LINE != '\0') && val->nb_ant_ok == 0)
-			return (-10);
-		else if (val->nb_ant_ok == 1)
-		{
-			if (*LINE == '#')
-			{
-				if (ft_strcmp(LINE, "##start") == 0 && val->start_ok == 1)
-					return (-20);
-				if (ft_strcmp(LINE, "##start") == 0)
-				{
-					if (val->end_flag == 1)
-						return (-1);
-					val->start_ok = 1;
-					if (val->start_flag == 1)
-						return (-40);
-					val->start_flag = 1;
-				}
-				if (ft_strcmp(LINE, "##end") == 0)
-				{
-					val->end_ok += 1;
-					val->end_flag = 1;
-					if (val->start_flag == 1)
-						return (-40);
-				}
-			}
-			else if (val->space == 0 && val->end_flag == 0)
-			{
-				if (ft_strchr(LINE, '-') == NULL)
-					return (-50);
-				if ((ret = check_link(LINE, val->stock_name)) < 0)
-					return (ret);
-			}
-			else if (val->space == 2)
-			{
-				if ((ret = check_x_y_line(LINE, &val->stock_name, &val->stock_coord)) < 0)
-					return (ret);
-				val->end_flag = 0;
-				val->count_room += 1;
-				val->start_flag = 0;
-			}
-			else if (val->end_flag == 1)
-				return (-30);
-			else if (val->start_flag == 1)
-				return (-40);
-			else
-				return (-50);
-		}
-		else
-			return (-60);
-		ft_strdel(&LINE);
+		if ((ret = global_analyse(val)) < 0)
+			return (ret);
 	}
-	if (val->nb_ant_ok == 0)
-		return (-60);
-	if (val->count_room == 0)
-		return (-70);
-	if (val->start_ok == 0)
-		return (-80);
-	if (val->end_ok == 0)
-		return (-90);
-//	ft_putendl_fd(stock_name, 2);
-//	ft_putendl_fd(stock_coord, 2);
+	if ((ret = last_check(val)) < 0)
+		return (ret);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 17:48:09 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/15 12:07:45 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/15 14:16:26 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,24 +51,52 @@ static int check_coord_number(char *line)
 	return (0);
 }
 
+static int first_check(char *line, char **name)
+{
+	if (*line == 'L')
+		return (-104);
+	if (!(*name = ft_strndup(line, ft_index(line, ' '))))
+		return (-1);
+	if (ft_strchr(*name, '-') != NULL)
+	{
+		ft_strdel(&(*name));
+		return (-105);
+	}
+	return (0);
+}
+
+static int coord_xy(char *line, char **stock_coord)
+{
+	int ret;
+	char *remain;
+	char *remain_tmp;
+
+	ret = 0;
+	remain = ft_strchr(line, ' ');
+	if (ft_is_space_digit_str(remain) == -1)
+		return (-107);
+	remain_tmp = ft_strdup(remain + 1);
+	if (ft_strstr(*stock_coord, remain + 1) != NULL)
+		return (-108);
+	if(!(*stock_coord = ft_strjoin_free(*stock_coord, remain_tmp)))
+		return (-1);
+	ft_strdel(&remain_tmp);
+	if (!(*stock_coord = ft_strjoin_free(*stock_coord, "_")))
+		return (-1);
+	if ((ret = check_coord_number(line)) < 0)
+		return (ret);
+	return (0);
+}
+
 int check_x_y_line(char *line, char **stock_name, char **stock_coord)
 {
-	char *remain;
 	char *name;
-	char *remain_tmp;
 	char *tmp_name;
 	int ret;
 
 	ret = 0;
-	if (*line == 'L')
-		return (-104);
-	if (!(name = ft_strndup(line, ft_index(line, ' '))))
-		return (-1);
-	if (ft_strchr(name, '-') != NULL)
-	{
-		ft_strdel(&name);
-		return (-105);
-	}
+	if ((ret = first_check(line, &name)) < 0)
+		return (ret);
 	if (ft_malloc_link(&tmp_name, name) == -1)
 		return (-1);
 	if (ft_strstr(*stock_name, tmp_name) != NULL)
@@ -83,18 +111,7 @@ int check_x_y_line(char *line, char **stock_name, char **stock_coord)
 	ft_strdel(&name);
 	if (!(*stock_name = ft_strjoin_free(*stock_name, " ")))
 		return (-1);
-	remain = ft_strchr(line, ' ');
-	if (ft_is_space_digit_str(remain) == -1)
-		return (-107);
-	remain_tmp = ft_strdup(remain + 1);
-	if (ft_strstr(*stock_coord, remain + 1) != NULL)
-		return (-108);
-	if(!(*stock_coord = ft_strjoin_free(*stock_coord, remain_tmp)))
-		return (-1);
-	ft_strdel(&remain_tmp);
-	if (!(*stock_coord = ft_strjoin_free(*stock_coord, "_")))
-		return (-1);
-	if ((ret = check_coord_number(line)) < 0)
+	if ((ret = coord_xy(line, &(*stock_coord))) < 0)
 		return (ret);
 	return (0);
 }

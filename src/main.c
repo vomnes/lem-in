@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:43:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/15 13:03:44 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/15 14:53:36 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void code_error_one(int code)
 	(code == -20) ? ft_putstr_fd("Must have only one start", 2) : (void)code;
 	(code == -30) ? ft_putstr_fd("Command end must followed by : name \
 <coord_x> <coord_y>", 2) : (void)code;
-	(code == -40) ? ft_putstr_fd("Command start must followed by : name \
+	(code == -40) ? ft_putstr_fd("Command start must be followed by : name \
 <coord_x> <coord_y>", 2) : (void)code;
 	(code == -50) ? ft_putstr_fd("Wrong format", 2) : (void)code;
 	(code == -60) ? ft_putstr_fd("No ants", 2) : (void)code;
@@ -74,7 +74,7 @@ int main(int argc, char **argv)
 			else
 			{
 				ft_putstr_fd(" - [Line ", 2);
-				ft_putnbr_fd(num_line, 2);
+				ft_putnbr_fd(ret, 2);
 				ft_putstr_fd("]", 2);
 			}
 			ft_putstr_fd("\n", 2);
