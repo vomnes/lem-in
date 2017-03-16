@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 15:36:48 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/15 18:38:17 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/16 10:42:40 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,6 @@ char *stock_name)
 	if (ft_malloc_link(&tmp_pn1, &tmp_pn2, &(*parse_name_1),\
 	&(*parse_name_2)) == -1)
 		return (-1);
-	if (ft_strcmp(*parse_name_1, *parse_name_2) == 0)
-	{
-		ft_free_all(&tmp_pn1, &tmp_pn2);
-		return (-92);
-	}
 	if (ft_strstr(stock_name, tmp_pn1) == NULL)
 	{
 		ft_free_all(&tmp_pn1, &tmp_pn2);

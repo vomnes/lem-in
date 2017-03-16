@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 16:08:45 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/15 18:50:49 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/16 10:42:54 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static void	code_error_two(int code)
 {
 	(code == -91) ? ft_putstr_fd("Wrong format", 2) : (void)code;
 	(code == -1) ? ft_putstr_fd("Malloc failed", 2) : (void)code;
-	(code == -92) ? ft_putstr_fd("Name_1 = Name_2", 2) : (void)code;
 	(code == -93) ? ft_putstr_fd("Name_1 does not exist", 2) : (void)code;
 	(code == -94) ? ft_putstr_fd("Name_2 does not exist", 2) : (void)code;
 	(code == -101) ? ft_putstr_fd("Coordinate x : Wrong format", 2)\
