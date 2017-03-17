@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/16 18:02:48 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/17 17:14:24 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/17 17:31:32 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,34 @@ typedef struct		s_room
 	t_link		     *link;
 }					t_room;
 
+void print_link(t_link *lst)
+{
+	t_link *tmp;
+	t_room *test;
+
+	tmp = lst;
+	while(tmp != NULL)
+	{
+		test = tmp->link_room;
+		printf("-->link : %s - x : %d - y : %d\n", test->name, test->x, test->y);
+		tmp = tmp->next;
+	}
+}
+
+int link_exist(t_link *lst, char *name)
+{
+	t_room *room_selected;
+
+	while(lst != NULL)
+	{
+		room_selected = lst->link_room;
+		if (ft_strcmp(room_selected->name, name) == 0)
+		 	return (-1);
+		lst = lst->next;
+	}
+	return (0);
+}
+
 int	ft_push_link(t_room *rooms, t_link **lst_head, char *link_name)
 {
 	t_link	*new_node;
@@ -37,6 +65,8 @@ int	ft_push_link(t_room *rooms, t_link **lst_head, char *link_name)
 
 	new_node = *lst_head;
 	tmp_room = rooms;
+	if (link_exist(*lst_head, link_name) == -1)
+		return (0);
 	if(*lst_head == NULL)
 	{
 		if (!(*lst_head = (t_link*)malloc(sizeof(t_link))))
@@ -62,7 +92,7 @@ int	ft_push_link(t_room *rooms, t_link **lst_head, char *link_name)
 	return (1);
 }
 
-int	ft_push_back(t_room **lst_head, char *room, int x, int y, char state)
+int	ft_push_room(t_room **lst_head, char *room, int x, int y, char state)
 {
 	t_room	*new_node;
 
@@ -92,20 +122,6 @@ int	ft_push_back(t_room **lst_head, char *room, int x, int y, char state)
 		new_node->next->next = NULL;
 	}
 	return (1);
-}
-
-void print_link(t_link *lst)
-{
-	t_link *tmp;
-	t_room *test;
-
-	tmp = lst;
-	while(tmp != NULL)
-	{
-		test = tmp->link_room;
-		printf("-->link : %s - x : %d - y : %d\n", test->name, test->x, test->y);
-		tmp = tmp->next;
-	}
 }
 
 void print_graph(t_room *lst)
@@ -152,7 +168,7 @@ int	ft_lst_len2(t_link *list)
 	return (count);
 }
 
-void ft_push_link_on(char *selected_room, char *room, t_room **list_room)
+void ft_add_link(char *selected_room, char *room, t_room **list_room)
 {
 	t_room	*tmp;
 	t_room	*tmp_initial;
@@ -163,6 +179,7 @@ void ft_push_link_on(char *selected_room, char *room, t_room **list_room)
 		tmp = tmp->next;
 	ft_push_link(tmp_initial, &(tmp->link), room);
 }
+
 int main(int argc, char **argv)
 {
 	t_room *my_list;
@@ -174,20 +191,25 @@ int main(int argc, char **argv)
 		ft_putstr("Restart\n");
 	else
 	{
-		ft_push_back(&my_list, "2", 5, 0, 0);
-		ft_push_back(&my_list, "0", 1, 2, 1);
-		ft_push_back(&my_list, "1", 24, 42, 2);
-		ft_push_back(&my_list, "3", 5, 4, 0);
-		ft_push_link_on("0", "2", &my_list);
-		ft_push_link_on("2", "0", &my_list);
-		ft_push_link_on("0", "3", &my_list);
-		ft_push_link_on("3", "0", &my_list);
-		ft_push_link_on("2", "1", &my_list);
-		ft_push_link_on("1", "2", &my_list);
-		ft_push_link_on("3", "1", &my_list);
-		ft_push_link_on("1", "3", &my_list);
-		ft_push_link_on("2", "3", &my_list);
-		ft_push_link_on("3", "2", &my_list);
+		ft_push_room(&my_list, "2", 5, 0, 0);
+		ft_push_room(&my_list, "0", 1, 2, 1);
+		ft_push_room(&my_list, "1", 24, 42, 2);
+		ft_push_room(&my_list, "3", 5, 4, 0);
+		ft_add_link("0", "2", &my_list);
+		ft_add_link("2", "0", &my_list);
+		ft_add_link("0", "3", &my_list);
+		ft_add_link("3", "0", &my_list);
+		ft_add_link("2", "1", &my_list);
+		ft_add_link("1", "2", &my_list);
+		ft_add_link("3", "1", &my_list);
+		ft_add_link("1", "3", &my_list);
+		ft_add_link("2", "3", &my_list);
+		ft_add_link("3", "2", &my_list);
+		ft_add_link("3", "2", &my_list);
+		ft_add_link("3", "2", &my_list);
+		ft_add_link("3", "2", &my_list);
+		ft_add_link("3", "2", &my_list);
+		ft_add_link("2", "3", &my_list);
 	}
 	ft_putendl(Y_GREEN"=== [Print Graph] ==="RESET);
 	print_graph(my_list);
