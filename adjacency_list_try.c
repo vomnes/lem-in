@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_main_test.c                                   :+:      :+:    :+:   */
+/*   adjacency_list_try.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/16 18:02:48 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/17 12:24:49 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/17 17:14:24 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,11 @@
 
 typedef struct		s_link
 {
-	char			*name;
+	void			*link_room;
+	char 			*name;
 	struct s_link	*next;
 }					t_link;
-/*
-typedef struct       s_data
-{
-	char		     *name;
-	int			     x;
-	int			     y;
-	char		     state;
-	t_link		     *link;
-}				     t_data;
-*/
+
 typedef struct		s_room
 {
 	struct	s_room	 *next;
@@ -34,85 +26,24 @@ typedef struct		s_room
 	int			     x;
 	int			     y;
 	char		     state;
+	char			 visited;
 	t_link		     *link;
 }					t_room;
-/*
-t_data *add_spe_room(char *name, int x, int y)
-{
-	t_data  *tmp;
 
-	if (!(tmp = (t_data*)malloc(sizeof(t_data))))
-		return (NULL);
-	tmp->name = ft_strdup(name);
-	 ft_putendl(tmp->name);
-	tmp->x = x;
-	 ft_putnbr(tmp->x);
-	 ft_putchar('\n');
-	tmp->y = y;
-	 ft_putnbr(tmp->y);
-	 ft_putchar('\n');
-	return (tmp);
-}
-*/
-/*
-typedef struct		s_room
-{
-	struct	s_room	 *next;
-	char		     *name;
-	int			     x;
-	int			     y;
-	char		     state;
-	t_link		     *link;
-}					t_room;
-*/
-/*
-void add_room(char *room, t_room **lst)
-{
-	t_room *tmp;
-
-	ft_putendl("add_room()");
-	tmp = NULL;
-	tmp = *lst;
-	if (*lst == NULL)
-	{
-		ft_putendl("*lst is NULL");
-		if (!(*lst = (t_room*)ft_memalloc(sizeof(t_room))))
-			return ;
-		(*lst)->name = ft_strdup(room);
-		(*lst)->x = 5;
-		(*lst)->y = 25;
-		(*lst)->next = NULL;
-	}
-	else
-	{
-		ft_putendl("in -->");
-		while (tmp != NULL)
-		{
-			tmp = tmp->next;
-			ft_putendl("while / **\\");
-		}
-		ft_putendl("tmp->room");
-		if (!(tmp = (t_room*)ft_memalloc(sizeof(t_room))))
-			return ;
-		ft_putendl("tmp->room malloced");
-		tmp->name = ft_strdup(room);
-		tmp->x = 42;
-		tmp->y = 24;
-		ft_putendl("tmp->next");
-		tmp->next = NULL;
-	}
-	ft_putendl("add_room() >> End");
-}
-*/
-int	ft_push_link(t_link **lst_head, char *link_name)
+int	ft_push_link(t_room *rooms, t_link **lst_head, char *link_name)
 {
 	t_link	*new_node;
+	t_room *tmp_room;
 
 	new_node = *lst_head;
+	tmp_room = rooms;
 	if(*lst_head == NULL)
 	{
 		if (!(*lst_head = (t_link*)malloc(sizeof(t_link))))
 			return(-1);
+		while (ft_strcmp(tmp_room->name, link_name) != 0 && tmp_room != NULL)
+			tmp_room = tmp_room->next;
+		(*lst_head)->link_room = tmp_room;
 		(*lst_head)->name = ft_strdup(link_name);
 		(*lst_head)->next = NULL;
 	}
@@ -122,6 +53,9 @@ int	ft_push_link(t_link **lst_head, char *link_name)
 			new_node = new_node->next;
 		if (!(new_node->next = (t_link*)malloc(sizeof(t_link))))
 			return(-1);
+		while (ft_strcmp(tmp_room->name, link_name) != 0 && tmp_room != NULL)
+			tmp_room = tmp_room->next;
+		new_node->next->link_room = tmp_room;
 		new_node->next->name = ft_strdup(link_name);
 		new_node->next->next = NULL;
 	}
@@ -163,11 +97,13 @@ int	ft_push_back(t_room **lst_head, char *room, int x, int y, char state)
 void print_link(t_link *lst)
 {
 	t_link *tmp;
+	t_room *test;
 
 	tmp = lst;
 	while(tmp != NULL)
 	{
-		printf("-->link : %s\n", tmp->name);
+		test = tmp->link_room;
+		printf("-->link : %s - x : %d - y : %d\n", test->name, test->x, test->y);
 		tmp = tmp->next;
 	}
 }
@@ -201,21 +137,32 @@ int	ft_lst_len(t_room *list)
 	return (count);
 }
 
+int	ft_lst_len2(t_link *list)
+{
+	t_link	*temp;
+	int		count;
+
+	temp = list;
+	count = 0;
+	while (temp != NULL)
+	{
+		count++;
+		temp = temp->next;
+	}
+	return (count);
+}
+
 void ft_push_link_on(char *selected_room, char *room, t_room **list_room)
 {
 	t_room	*tmp;
+	t_room	*tmp_initial;
 
 	tmp = *list_room;
+	tmp_initial = *list_room;
 	while (ft_strcmp(tmp->name, selected_room) != 0 && tmp != NULL)
-	{
 		tmp = tmp->next;
-	}
-	ft_push_link(&(tmp->link), room);
+	ft_push_link(tmp_initial, &(tmp->link), room);
 }
-/*
-ft_push_link(&(my_list->link), "One");
-ft_push_link(&(my_list->next->link), "Two");
-*/
 int main(int argc, char **argv)
 {
 	t_room *my_list;
@@ -227,17 +174,22 @@ int main(int argc, char **argv)
 		ft_putstr("Restart\n");
 	else
 	{
-		ft_putendl(L_GREEN"> Start"RESET);
-		while (argv[i])
-		{
-			ft_push_back(&my_list, argv[i], 42, 4, 1); //add_room(argv[i++], &my_list);
-			i++;
-		}
-		ft_push_link_on(argv[3], argv[2], &my_list);
-		ft_push_link_on(argv[3], argv[1], &my_list);
-		ft_putendl(RED"> Finish"RESET);
+		ft_push_back(&my_list, "2", 5, 0, 0);
+		ft_push_back(&my_list, "0", 1, 2, 1);
+		ft_push_back(&my_list, "1", 24, 42, 2);
+		ft_push_back(&my_list, "3", 5, 4, 0);
+		ft_push_link_on("0", "2", &my_list);
+		ft_push_link_on("2", "0", &my_list);
+		ft_push_link_on("0", "3", &my_list);
+		ft_push_link_on("3", "0", &my_list);
+		ft_push_link_on("2", "1", &my_list);
+		ft_push_link_on("1", "2", &my_list);
+		ft_push_link_on("3", "1", &my_list);
+		ft_push_link_on("1", "3", &my_list);
+		ft_push_link_on("2", "3", &my_list);
+		ft_push_link_on("3", "2", &my_list);
 	}
-	printf("len >> %d\n", ft_lst_len(my_list));
+	ft_putendl(Y_GREEN"=== [Print Graph] ==="RESET);
 	print_graph(my_list);
 	return (0);
 }
