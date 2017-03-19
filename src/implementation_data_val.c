@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 16:08:45 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/16 10:42:54 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/19 11:56:47 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,16 @@ static void	code_error_two(int code)
 	(code == -108) ? ft_putstr_fd("Coordinates already used", 2) : (void)code;
 }
 
-int implementation_data_val(void)
+int implementation_data_val(char ***input_data)
 {
 	int				num_line;
 	t_validation	validation;
 	int				ret;
+	char 			*line_input;
 
 	num_line = 0;
 	ret = 0;
-	if ((ret = data_validation(&num_line, &validation)) < 0)
+	if ((ret = data_validation(&num_line, &validation, &line_input)) < 0)
 	{
 		ft_putstr_fd("ERROR - ", 2);
 		code_error_one(ret);
@@ -76,8 +77,10 @@ int implementation_data_val(void)
 		}
 		ft_putstr_fd("\n", 2);
 		ft_kill_char(&validation.stock_coord, &validation.stock_name, &validation.line);
-		return (-1);
 	}
 	ft_kill_char(&validation.stock_coord, &validation.stock_name, &validation.line);
+	if (!(*input_data = ft_strsplit(line_input, '\n')))
+		return (-1);
+	ft_strdel(&line_input);
 	return (0);
 }

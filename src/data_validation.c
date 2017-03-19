@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 13:28:32 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/15 15:24:11 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/19 11:52:47 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,21 @@ static int	global_analyse(t_validation *val)
 	return (0);
 }
 
-int			data_validation(int *num_line, t_validation *val)
+int			data_validation(int *num_line, t_validation *val, char **line_input)
 {
 	int ret;
 
 	ret = 0;
 	if (init_val(val) == -1)
 		return (-1);
+	if (!(*line_input = ft_strdup("\0")))
+		return (-1);
 	while (get_next_line(0, &LINE) > 0)
 	{
+		if (!(*line_input = ft_strjoin_free(*line_input, LINE)))
+			return (-1);
+		if (!(*line_input = ft_strjoin_free(*line_input, "\n")))
+			return (-1);
 		(*num_line)++;
 		if ((ret = global_analyse(val)) < 0)
 			return (ret);
