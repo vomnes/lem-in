@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 17:48:09 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/15 18:49:00 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/19 12:47:49 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,22 @@ static int	first_check(char *line, char **name)
 	return (0);
 }
 
+static int	ft_malloc_coord(char **tmp_name, char *name)
+{
+	if (!(*tmp_name = ft_strnew(ft_strlen(name) + 3)))
+		return (-1);
+	*tmp_name = ft_strcat(*tmp_name, "_");
+	*tmp_name = ft_strcat(*tmp_name, name);
+	*tmp_name = ft_strcat(*tmp_name, "_");
+	return (0);
+}
+
 static int	coord_xy(char *line, char **stock_coord)
 {
 	int		ret;
 	char	*remain;
 	char	*remain_tmp;
+	char 	*tmp_stock_coord;
 
 	ret = 0;
 	remain = ft_strchr(line, ' ');
@@ -77,8 +88,14 @@ static int	coord_xy(char *line, char **stock_coord)
 		return (-107);
 	if (!(remain_tmp = ft_strdup(remain + 1)))
 		return (-1);
-	if (ft_strstr(*stock_coord, remain + 1) != NULL)
+	if (ft_malloc_coord(&tmp_stock_coord, remain + 1) == -1)
+		return (-1);
+	if (ft_strstr(*stock_coord, tmp_stock_coord) != NULL)
+	{
+		ft_strdel(&tmp_stock_coord);
 		return (-108);
+	}
+	ft_strdel(&tmp_stock_coord);
 	if (!(*stock_coord = ft_strjoin_free(*stock_coord, remain_tmp)))
 		return (-1);
 	ft_strdel(&remain_tmp);
