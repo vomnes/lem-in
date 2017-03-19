@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 16:51:10 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/15 16:23:01 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/19 13:54:33 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,42 +49,47 @@ void init_collect(t_collect *collect)
 	collect->statut = 0;
 }
 
-int get_input(void)
+int get_input(char **input_data, t_room **room)
 {
-	t_data *data;
 	t_collect collect;
 	char *line;
+	int i;
 
-	(void)data;
 	line = NULL;
+	i = 0;
 	init_collect(&collect);
-	while (get_next_line(0, &line) > 0)
+	while (input_data[i] != NULL)
 	{
-		if (*line == '#')
+		if (input_data[i][0] == '#')
 		{
-			if (ft_strcmp(line, "##start") == 0)
+			if (ft_strcmp(input_data[i], "##start") == 0)
 				collect.statut = START;
-			else if (ft_strcmp(line, "##end") == 0)
+			else if (ft_strcmp(input_data[i], "##end") == 0)
 				collect.statut = END;
-			ft_strdel(&line);
+			i++;
 			continue ;
 		}
-		else if (ft_strchr(line, ' ') != NULL)
+		else if (ft_strchr(input_data[i], ' ') != NULL)
 		{
-			if (!(collect.name = ft_strsub(line, 0, ft_index(line, ' '))))
+			if (!(collect.name = ft_strsub(input_data[i], 0, ft_index(input_data[i], ' '))))
 				return (-1);
-			if (get_x_y(ft_strchr(line, ' '), &collect) == -1)
+			if (get_x_y(ft_strchr(input_data[i], ' '), &collect) == -1)
 				return (-1);
-			ft_printf("name : %11s | coord_x : %3d | coord_y : %3d | statut : %d\n", \
-			collect.name, collect.coord_x, collect.coord_y, collect.statut);
+			if (graph_add_room(room, collect.name, collect.coord_x, collect.coord_y, collect.statut) == -1)
+				return (-1);
 		}
-/*		else if (ft_strchr(line, '-') != NULL)
+		else if (ft_strchr(input_data[i], '-') != NULL)
 		{
-
+			if (!(collect.name_1 = ft_strndup(input_data[i], ft_index(input_data[i], '-'))))
+        		return (-1);
+			collect.name_2 = ft_strchr(input_data[i], '-') + 1;
+			if (graph_add_link(collect.name_1, collect.name_2, room) == -1)
+				return (-1);
+			if (graph_add_link(collect.name_2, collect.name_1, room) == -1)
+				return (-1);
 		}
-*/		init_collect(&collect);
-		ft_strdel(&line);
+		init_collect(&collect);
+		i++;
 	}
-	ft_strdel(&line);
 	return (0);
 }
