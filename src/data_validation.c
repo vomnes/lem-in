@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 13:28:32 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/19 12:48:09 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/19 16:16:24 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,17 @@
 static int	init_val(t_validation *val)
 {
 	val->line = NULL;
-	val->space = 0;
 	val->nb_ant_ok = 0;
 	val->start_ok = 0;
+	val->start_flag = 0;
 	val->end_ok = 0;
 	val->end_flag = 0;
-	val->count_room = 0;
+	val->space = 0;
 	if (!(val->stock_name = ft_strdup(" ")))
 		return (-1);
 	if (!(val->stock_coord = ft_strdup("_")))
 		return (-1);
+	val->count_room = 0;
 	return (0);
 }
 

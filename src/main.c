@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:43:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/19 13:47:04 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/19 14:12:07 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		main(int argc, char **argv)
 	{
 		if (implementation_data_val(&input_data) == -1)
 			return (-1);
-		if (get_input(input_data, &room) == -1)
+		if (graph_create(input_data, &room) == -1)
 			return (-1);
 	}
 	else
