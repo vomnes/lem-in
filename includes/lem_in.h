@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:32:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/19 13:47:31 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/19 14:11:40 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ int ft_is_signed_integer(char *str);
 int count_space(char *line);
 int	ft_is_space_digit_str(char *str);
 
+/* Parsing - Data Validation */
 char	*ft_strjoin_free(char *s1, char *s2);
-int get_input(char **input_data, t_room **room);
 int check_x_y_line(char *line, char **stock_name, char **stock_coord);
 int check_link(char *line, char *stock_name);
 int analyse_line(int *ret, t_validation *val);
@@ -85,6 +85,7 @@ int			data_validation(int *num_line, t_validation *val, char **line_input);
 int implementation_data_val(char ***input_data);
 
 /* Graph */
+int graph_create(char **input_data, t_room **room);
 void print_graph(t_room *lst);
 void print_link(t_link *lst);
 int	graph_add_room(t_room **lst_head, char *room, int x, int y, char state);

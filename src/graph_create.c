@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_input.c                                    :+:      :+:    :+:   */
+/*   create_graph.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 16:51:10 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/19 13:54:33 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/19 14:11:14 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void init_collect(t_collect *collect)
 	collect->statut = 0;
 }
 
-int get_input(char **input_data, t_room **room)
+int graph_create(char **input_data, t_room **room)
 {
 	t_collect collect;
 	char *line;

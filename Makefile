@@ -1,7 +1,6 @@
 NAME = lem-in
 
 SRC =	./src/main.c \
-		./src/parsing_input.c \
 		./src/check_number.c \
 		./src/collect_number.c \
 		./src/count_space.c \
@@ -13,10 +12,13 @@ SRC =	./src/main.c \
 		./src/check_x_y_line.c \
 		./src/analyse_line.c \
 		./src/implementation_data_val.c \
-		./src/data_validation.c
+		./src/data_validation.c \
+		./src/graph_add_link.c \
+		./src/graph_add_room.c \
+		./src/graph_create.c \
+		./src/graph_tool.c
 
 OBJ =	./obj/main.o \
-		./obj/parsing_input.o \
 		./obj/check_number.o \
 		./obj/collect_number.o \
 		./obj/count_space.o \
@@ -28,7 +30,11 @@ OBJ =	./obj/main.o \
 		./obj/check_x_y_line.o \
 		./obj/analyse_line.o \
 		./obj/implementation_data_val.o \
-		./obj/data_validation.o
+		./obj/data_validation.o \
+		./obj/graph_add_link.o \
+		./obj/graph_add_room.o \
+		./obj/graph_create.o \
+		./obj/graph_tool.o
 
 MAKE = make
 
