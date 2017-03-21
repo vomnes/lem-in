@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 13:34:10 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/19 13:35:31 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/20 10:08:20 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void print_link(t_link *lst)
 		tmp = tmp->next;
 	}
 }
+
 int	ft_lst_len(t_room *list)
 {
 	t_room	*temp;

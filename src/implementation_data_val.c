@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 16:08:45 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/19 13:04:55 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/20 11:47:25 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static void	code_error_one(int code)
 	(code == -10) ? ft_putstr_fd("Ant Number : Wrong format", 2) : (void)code;
 	(code == -20) ? ft_putstr_fd("Must have only one start", 2) : (void)code;
 	(code == -30) ? ft_putstr_fd("Command end must followed by : name \
-	<coord_x> <coord_y>", 2) : (void)code;
+<coord_x> <coord_y>", 2) : (void)code;
 	(code == -40) ? ft_putstr_fd("Command start must be followed by : name \
-	<coord_x> <coord_y>", 2) : (void)code;
+<coord_x> <coord_y>", 2) : (void)code;
 	(code == -50) ? ft_putstr_fd("Wrong format", 2) : (void)code;
 	(code == -60) ? ft_putstr_fd("No ants", 2) : (void)code;
 	(code == -70) ? ft_putstr_fd("No room", 2) : (void)code;

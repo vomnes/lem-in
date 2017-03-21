@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 16:51:10 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/19 14:15:38 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/21 17:07:14 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void init_collect(t_collect *collect)
 	collect->statut = 0;
 }
 
-int graph_create(char **input_data, t_room **room)
+int graph_create(char **input_data, t_room **room, t_data *data)
 {
 	t_collect collect;
 	char *line;
@@ -60,6 +60,8 @@ int graph_create(char **input_data, t_room **room)
 	init_collect(&collect);
 	while (input_data[i] != NULL)
 	{
+		if (ft_isdigitstr(input_data[i]) == 1)
+			data->nb_ants = ft_lltoi(input_data[i]);
 		if (input_data[i][0] == '#')
 		{
 			if (ft_strcmp(input_data[i], "##start") == 0)
@@ -75,6 +77,10 @@ int graph_create(char **input_data, t_room **room)
 				return (-1);
 			if (get_x_y(ft_strchr(input_data[i], ' '), &collect) == -1)
 				return (-1);
+			if (collect.statut == START)
+				data->start = ft_strdup(collect.name);
+			if (collect.statut == END)
+				data->end = ft_strdup(collect.name);
 			if (graph_add_room(room, collect.name, collect.coord_x, collect.coord_y, collect.statut) == -1)
 				return (-1);
 		}

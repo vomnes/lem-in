@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:32:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/19 14:11:40 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/21 17:04:13 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct		s_link
 {
 	void			*link_room;
 	char 			*name;
+	char 			visited;
 	struct s_link	*next;
 }					t_link;
 
@@ -60,14 +61,30 @@ typedef struct		s_room
 	int			     x;
 	int			     y;
 	char		     state;
-	char			 visited;
+	char			 done;
 	t_link		     *link;
 }					t_room;
 
-/*typedef struct 		s_env
+typedef struct		 s_path
 {
+	struct	s_path   *next;
+	char		     *name;
+}					t_path;
 
-}					t_env;*/
+typedef struct 				s_list_path
+{
+	struct	s_list_path		*next;
+	char		     		*last_link_name;
+	t_path 					*path;
+}							t_list_path;
+
+typedef struct s_data
+{
+	t_list_path *list_path;
+	int 		nb_ants;
+	char 		*start;
+	char 		*end;
+}				t_data;
 
 int check_number(char *line);
 int collect_number(char *line, int *i);
@@ -85,10 +102,18 @@ int			data_validation(int *num_line, t_validation *val, char **line_input);
 int implementation_data_val(char ***input_data);
 
 /* Graph */
-int graph_create(char **input_data, t_room **room);
+int graph_create(char **input_data, t_room **room, t_data *data);
 void print_graph(t_room *lst);
 void print_link(t_link *lst);
 int	graph_add_room(t_room **lst_head, char *room, int x, int y, char state);
 int graph_add_link(char *selected_room, char *room, t_room **list_room);
+
+/* Path */
+
+t_path *list_duplicate(t_path *original, char *new_one);
+void print_path(t_path *lst);
+void print_all_paths(t_list_path *lst);
+
+int path_algorithm(t_room **rooms, t_data *data);
 
 #endif

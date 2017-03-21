@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graph_push_room.c                                  :+:      :+:    :+:   */
+/*   graph_add_room.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 13:29:41 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/19 13:33:00 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/20 15:36:54 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	graph_add_room(t_room **lst_head, char *room, int x, int y, char state)
 		(*lst_head)->x = x;
 		(*lst_head)->y = y;
 		(*lst_head)->state = state;
+		(*lst_head)->done = 0;
 		(*lst_head)->link = NULL;
 		(*lst_head)->next = NULL;
 	}
@@ -38,6 +39,7 @@ int	graph_add_room(t_room **lst_head, char *room, int x, int y, char state)
 		new_node->next->x = x;
 		new_node->next->y = y;
 		new_node->next->state = state;
+		new_node->next->done = 0;
 		new_node->next->link = NULL;
 		new_node->next->next = NULL;
 	}
