@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 16:50:46 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/22 15:57:10 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/22 16:31:01 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int path_algorithm(t_room **rooms, t_data *data)
 	while (42)
 	{
 		/* Select right list path */
-		print_all_paths(data->list_path);
+	//	print_all_paths(data->list_path);
 		// ft_putendl(tmp_list->last_link_name);
 		// ft_putendl(tmp_room->name);
 		// while (ft_strcmp(tmp_list->last_link_name, tmp_room->name) != 0)
@@ -124,27 +124,28 @@ int path_algorithm(t_room **rooms, t_data *data)
 		{
 			// Set room as visited
 			tmp_room->visited = 1;
+			if (ft_strcmp((data->list_path)->last_link_name, data->end) == 0)
+			{
+				// cpy list in solution path list
+				print_path((data->list_path)->path);
+				return (110);
+				new_path = list_duplicate(selected_path, "\0"); // tmp_link->name => link
+				add_path_list(&(data->solution_path), new_path, "\0");
+			//	ft_putendl("Select Two");
+			}
 			if (tmp_room->link == NULL && ft_strcmp(tmp_room->name, data->end) != 0)
 			{
 				delete_first_elem(&(data->list_path));
-				ft_putendl("Select One");
-			}
-			else if (ft_strcmp(tmp_room->name, data->end) == 0)
-			{
-				// cpy list in solution path list
-				new_path = list_duplicate(selected_path, "\0"); // tmp_link->name => link
-				add_path_list(&(data->solution_path), new_path, "\0");
-				ft_putendl("Select Two");
-				return (110);
+			//	ft_putendl("Select One");
 			}
 			else if (tmp_room->link != NULL)
 			{
 				// Si l'on a crée de nouveau path de ce maillon et qu'il a des links
 				// --> Delete old list_path
 				delete_first_elem(&(data->list_path));
-				ft_putendl("Select Three");
+			//	ft_putendl("Select Three");
 			}
-			print_all_paths(data->list_path);
+			//print_all_paths(data->list_path);
 			tmp_room = *rooms;
 			while (ft_strcmp(tmp_room->name, (data->list_path)->last_link_name) != 0)
 				tmp_room = tmp_room->next;
