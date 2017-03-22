@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 16:40:04 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/22 15:37:53 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/22 17:09:36 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void print_path(t_path *lst)
 	while(tmp != NULL)
 	{
 		ft_putstr(tmp->name);
-        ft_putstr(" --> ");
+		if (tmp->next != NULL)
+        	ft_putstr(" --> ");
 		tmp = tmp->next;
 	}
     ft_putchar('\n');

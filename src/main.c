@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:43:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/21 17:03:23 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/22 18:44:39 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int		main(int argc, char **argv)
 			return (-1);
 		if (graph_create(input_data, &room, &data) == -1)
 			return (-1);
-		print_graph(room);
-	//	find_path(&room, data.start, data.end);
+	//	print_graph(room);
+		path_algorithm(&room, &data);
 	}
 	else
 	{

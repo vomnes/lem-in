@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:32:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/21 17:04:13 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/22 11:22:13 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct		s_room
 	int			     x;
 	int			     y;
 	char		     state;
-	char			 done;
+	char			 visited;
 	t_link		     *link;
 }					t_room;
 
@@ -81,6 +81,7 @@ typedef struct 				s_list_path
 typedef struct s_data
 {
 	t_list_path *list_path;
+	t_list_path *solution_path;
 	int 		nb_ants;
 	char 		*start;
 	char 		*end;

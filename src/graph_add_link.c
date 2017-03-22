@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 13:27:32 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/20 15:38:22 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/22 14:14:49 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	push_link(t_room *rooms, t_link **list_link, char *link_name)
 	{
 		if (!(*list_link = (t_link*)malloc(sizeof(t_link))))
 			return(-1);
-		while (ft_strcmp(tmp_room->name, link_name) != 0 && tmp_room != NULL)
+		while (tmp_room != NULL && ft_strcmp(tmp_room->name, link_name) != 0)
 			tmp_room = tmp_room->next;
 		(*list_link)->link_room = tmp_room;
 		if (!((*list_link)->name = ft_strdup(link_name)))
@@ -53,7 +53,7 @@ static int	push_link(t_room *rooms, t_link **list_link, char *link_name)
 			new_node = new_node->next;
 		if (!(new_node->next = (t_link*)malloc(sizeof(t_link))))
 			return(-1);
-		while (ft_strcmp(tmp_room->name, link_name) != 0 && tmp_room != NULL)
+		while (tmp_room != NULL && ft_strcmp(tmp_room->name, link_name) != 0)
 			tmp_room = tmp_room->next;
 		new_node->next->link_room = tmp_room;
 		if (!(new_node->next->name = ft_strdup(link_name)))

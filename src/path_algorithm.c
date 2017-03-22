@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 16:50:46 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/22 16:31:01 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/22 18:44:17 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,10 @@ int ft_is_not_in(t_path *path, char *content)
 	return (1);
 }
 
+/*
+** comment
+*/
+
 int path_algorithm(t_room **rooms, t_data *data)
 {
 	t_path *selected_path;
@@ -94,31 +98,23 @@ int path_algorithm(t_room **rooms, t_data *data)
 	selected_path = NULL;
 	new_path = NULL;
 	data->list_path = NULL;
+	data->solution_path = NULL;
 	tmp_room = *rooms;
 	tmp_list = data->list_path;
-
 	ft_putendl(GOLD"=== [Start Algorithm] ==="RESET);
 	/* Select Start */
 	while (ft_strcmp(tmp_room->name, data->start) != 0)
 		tmp_room = tmp_room->next;
-	ft_putendl(tmp_room->name);
 	/* Add start in list_path */
 	new_path = list_duplicate(selected_path, data->start); //data->list_path
 	add_path_list(&data->list_path, new_path, data->start);
 	//print_all_paths(data->list_path);
 	while (42)
 	{
-		/* Select right list path */
-	//	print_all_paths(data->list_path);
-		// ft_putendl(tmp_list->last_link_name);
-		// ft_putendl(tmp_room->name);
-		// while (ft_strcmp(tmp_list->last_link_name, tmp_room->name) != 0)
-			// tmp_list = tmp_list->next;
-		// selected_path = tmp_list->path;
 		/* Select right link of the room - iteration in links */
 		tmp_link = tmp_room->link;
 		while (tmp_link != NULL && (ft_strcmp(tmp_link->name, \
-		tmp_room->name) == 0 || tmp_link->visited == 1 || ft_is_not_in((data->list_path)->path, tmp_link->name) == -1))
+		tmp_room->name) == 0 || tmp_link->visited == 1))// || ft_is_not_in((data->list_path)->path, tmp_link->name) == -1))
 			tmp_link = tmp_link->next;
 		if ((char*)tmp_link == NULL)
 		{
@@ -127,37 +123,34 @@ int path_algorithm(t_room **rooms, t_data *data)
 			if (ft_strcmp((data->list_path)->last_link_name, data->end) == 0)
 			{
 				// cpy list in solution path list
-				print_path((data->list_path)->path);
-				return (110);
-				new_path = list_duplicate(selected_path, "\0"); // tmp_link->name => link
-				add_path_list(&(data->solution_path), new_path, "\0");
+				new_path = list_duplicate((data->list_path)->path, UNDERLINE"Finish"RESET); // tmp_link->name => link
+				add_path_list(&(data->solution_path), new_path, "Finish");
+				break ;
 			//	ft_putendl("Select Two");
+			//	print_all_paths(data->solution_path);
 			}
-			if (tmp_room->link == NULL && ft_strcmp(tmp_room->name, data->end) != 0)
+			if (tmp_room->link == NULL && ft_strcmp((data->list_path)->last_link_name, data->end) != 0)
 			{
 				delete_first_elem(&(data->list_path));
 			//	ft_putendl("Select One");
 			}
 			else if (tmp_room->link != NULL)
 			{
-				// Si l'on a crée de nouveau path de ce maillon et qu'il a des links
-				// --> Delete old list_path
+				// Si l'on a crée de nouveau path de ce maillon et qu'il a des links --> Delete old list_path
 				delete_first_elem(&(data->list_path));
 			//	ft_putendl("Select Three");
 			}
-			//print_all_paths(data->list_path);
+		//	print_all_paths(data->list_path);
 			tmp_room = *rooms;
 			while (ft_strcmp(tmp_room->name, (data->list_path)->last_link_name) != 0)
 				tmp_room = tmp_room->next;
 			continue ;
 		}
 		// Add new Path to list_path
-		new_path = list_duplicate((data->list_path)->path, tmp_link->name); // tmp_link->name => link
+		new_path = list_duplicate((data->list_path)->path, tmp_link->name);
 		add_path_list(&(data->list_path), new_path, tmp_link->name);
 		tmp_link->visited = 1;
-		// Visit all rooms
 	}
-	ft_putendl("=== [Solution Paths] ===");
 	print_all_paths(data->solution_path);
 	return (0);
 }

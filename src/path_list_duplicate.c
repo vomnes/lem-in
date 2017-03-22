@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 16:42:30 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/21 16:42:48 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/22 16:54:11 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static int	path_push_elem_back(t_path **lst_head, char *content)
     {
         if (!(*lst_head = (t_path*)malloc(sizeof(t_path))))
             return(-1);
-        if (!((*lst_head)->name = ft_strdup(content)))
-            return (-1);
+    	if (!((*lst_head)->name = ft_strdup(content)))
+        	return (-1);
         (*lst_head)->next = NULL;
     }
     else
