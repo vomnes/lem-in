@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 16:50:46 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/23 15:25:20 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/23 20:36:23 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,19 @@
 int delete_path(t_path **path)
 {
 	t_path *tmp;
+	t_path *tmp_2;
 
 	tmp = *path;
+	tmp_2 = *path;
 	while (tmp != NULL)
 	{
+		tmp_2 = tmp;
 		ft_strdel(&(tmp->name));
 		tmp = tmp->next;
+		// free(tmp_2);
 	}
+	free(*path);
+	*path = NULL;
 	return (0);
 }
 
@@ -37,7 +43,7 @@ int delete_first_elem(t_list_path **list_path)
 	delete_path(&((*list_path)->path));
 	*list_path = (*list_path)->next;
 	free(old_head);
-	old_head = NULL; // re u sure
+	//old_head = NULL; // re u sure
 	return (0);
 }
 

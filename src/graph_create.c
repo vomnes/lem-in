@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 16:51:10 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/21 17:07:14 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/23 15:49:25 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int graph_create(char **input_data, t_room **room, t_data *data)
 				data->end = ft_strdup(collect.name);
 			if (graph_add_room(room, collect.name, collect.coord_x, collect.coord_y, collect.statut) == -1)
 				return (-1);
+			ft_strdel(&collect.name);
 		}
 		else if (ft_strchr(input_data[i], '-') != NULL)
 		{
@@ -93,6 +94,7 @@ int graph_create(char **input_data, t_room **room, t_data *data)
 				return (-1);
 			if (graph_add_link(collect.name_2, collect.name_1, room) == -1)
 				return (-1);
+			ft_strdel(&collect.name_1);
 		}
 		init_collect(&collect);
 		i++;

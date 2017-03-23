@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:32:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/22 11:22:13 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/23 15:24:20 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # define BASIC 0
 # define END 1
 # define START 2
+
+# define OFF_ADD 0
+# define ON_ADD 1
 
 # define ABS(x) (((x >> 31) ^ x) - (x >> 31))
 
@@ -111,7 +114,7 @@ int graph_add_link(char *selected_room, char *room, t_room **list_room);
 
 /* Path */
 
-t_path *list_duplicate(t_path *original, char *new_one);
+int path_add(t_data *data, t_path *original, char *title, char on_off);
 void print_path(t_path *lst);
 void print_all_paths(t_list_path *lst);
 
