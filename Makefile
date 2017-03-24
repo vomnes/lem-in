@@ -16,7 +16,14 @@ SRC =	./src/main.c \
 		./src/graph_add_link.c \
 		./src/graph_add_room.c \
 		./src/graph_create.c \
-		./src/graph_tool.c
+		./src/graph_clean.c \
+		./src/graph_tool.c \
+		./src/path_algorithm.c \
+		./src/path_add.c \
+		./src/path_delete.c \
+		./src/path_delete_first_elem.c \
+		./src/path_delete_list.c \
+		./src/path_tool.c
 
 OBJ =	./obj/main.o \
 		./obj/check_number.o \
@@ -34,7 +41,14 @@ OBJ =	./obj/main.o \
 		./obj/graph_add_link.o \
 		./obj/graph_add_room.o \
 		./obj/graph_create.o \
-		./obj/graph_tool.o
+		./obj/graph_clean.o \
+		./obj/graph_tool.o \
+		./obj/path_algorithm.o \
+		./obj/path_add.o \
+		./obj/path_delete.o \
+		./obj/path_delete_first_elem.o \
+		./obj/path_delete_list.o \
+		./obj/path_tool.o
 
 MAKE = make
 

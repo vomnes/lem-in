@@ -6,48 +6,13 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 16:50:46 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/23 20:36:23 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/24 11:43:44 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/lem_in.h"
 
-int delete_path(t_path **path)
-{
-	t_path *tmp;
-	t_path *tmp_2;
-
-	tmp = *path;
-	tmp_2 = *path;
-	while (tmp != NULL)
-	{
-		tmp_2 = tmp;
-		ft_strdel(&(tmp->name));
-		tmp = tmp->next;
-		// free(tmp_2);
-	}
-	free(*path);
-	*path = NULL;
-	return (0);
-}
-
-int delete_first_elem(t_list_path **list_path)
-{
-	t_list_path	*old_head;
-
-	old_head = NULL;
-	if (*list_path == NULL)
-		return (-1);
-	old_head = *list_path;
-	ft_strdel(&((*list_path)->last_link_name));
-	delete_path(&((*list_path)->path));
-	*list_path = (*list_path)->next;
-	free(old_head);
-	//old_head = NULL; // re u sure
-	return (0);
-}
-
-int breadth_first_search(t_room **tmp_room, t_data *data, t_room *head_room)
+static int breadth_first_search(t_room **tmp_room, t_data *data, t_room *head_room)
 {
 	t_link *tmp_link;
 
@@ -64,9 +29,9 @@ int breadth_first_search(t_room **tmp_room, t_data *data, t_room *head_room)
 			return (1);
 		}
 		if ((*tmp_room)->link == NULL && ft_strcmp((data->list_path)->last_link_name, data->end) != 0)
-			delete_first_elem(&(data->list_path));
+			path_delete_first_elem(&(data->list_path));
 		else if ((*tmp_room)->link != NULL)
-			delete_first_elem(&(data->list_path));
+			path_delete_first_elem(&(data->list_path));
 		(*tmp_room) = head_room;
 		while (ft_strcmp((*tmp_room)->name, (data->list_path)->last_link_name) != 0)
 			(*tmp_room) = (*tmp_room)->next;

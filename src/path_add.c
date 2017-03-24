@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 16:42:30 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/23 19:27:06 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/24 11:48:31 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	path_push_elem_back(t_path **lst_head, char *content)
     new_node = *lst_head;
     if(*lst_head == NULL)
     {
-        if (!(*lst_head = (t_path*)ft_memalloc(sizeof(t_path))))
+        if (!(*lst_head = (t_path*)malloc(sizeof(t_path))))
             return(-1);
     	if (!((*lst_head)->name = ft_strdup(content)))
         	return (-1);
@@ -29,7 +29,7 @@ static int	path_push_elem_back(t_path **lst_head, char *content)
     {
         while (new_node->next != NULL)
             new_node = new_node->next;
-        if (!(new_node->next = (t_path*)ft_memalloc(sizeof(t_path))))
+        if (!(new_node->next = (t_path*)malloc(sizeof(t_path))))
             return(-1);
         if (!(new_node->next->name = ft_strdup(content)))
             return (-1);

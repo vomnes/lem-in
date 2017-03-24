@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:32:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/23 15:24:20 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/24 11:43:17 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ void print_graph(t_room *lst);
 void print_link(t_link *lst);
 int	graph_add_room(t_room **lst_head, char *room, int x, int y, char state);
 int graph_add_link(char *selected_room, char *room, t_room **list_room);
+void graph_clean(t_room *lst);
 
 /* Path */
 
@@ -119,5 +120,9 @@ void print_path(t_path *lst);
 void print_all_paths(t_list_path *lst);
 
 int path_algorithm(t_room **rooms, t_data *data);
+
+void path_delete_first_elem(t_list_path **list_path);
+void path_list_delete(t_list_path **lst);
+void path_delete(t_path **path);
 
 #endif
