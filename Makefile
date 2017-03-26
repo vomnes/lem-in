@@ -23,6 +23,8 @@ SRC =	./src/main.c \
 		./src/path_delete.c \
 		./src/path_delete_first_elem.c \
 		./src/path_delete_list.c \
+		./src/path_delif_room.c \
+		./src/path_delif_link.c \
 		./src/path_tool.c
 
 OBJ =	./obj/main.o \
@@ -48,6 +50,8 @@ OBJ =	./obj/main.o \
 		./obj/path_delete.o \
 		./obj/path_delete_first_elem.o \
 		./obj/path_delete_list.o \
+		./obj/path_delif_room.o \
+		./obj/path_delif_link.o \
 		./obj/path_tool.o
 
 MAKE = make

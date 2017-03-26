@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 16:50:46 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/24 20:27:11 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/26 11:41:40 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,13 @@ static int breadth_first_search(t_room **tmp_room, t_data *data, t_room *head_ro
 	t_link *tmp_link;
 
 	tmp_link = (*tmp_room)->link;
-	while (tmp_link != NULL && (ft_strcmp(tmp_link->name, \
-	(*tmp_room)->name) == 0 || tmp_link->visited == call))
+	while (tmp_link != NULL &&
+	(ft_strcmp(tmp_link->name, (*tmp_room)->name) == 0 ||
+	(ft_strcmp(tmp_link->name, data->start) == 0 ||
+	tmp_link->visited == call)))
 		tmp_link = tmp_link->next;
 	if ((char*)tmp_link == NULL)
 	{
-		// ft_putendl("#eNd");
 		if (ft_strcmp((data->list_path)->last_link_name, data->end) == 0)
 		{
 			if (path_add(data, (data->list_path)->path, "Finish", OFF_ADD) == -1)
@@ -45,17 +46,15 @@ static int breadth_first_search(t_room **tmp_room, t_data *data, t_room *head_ro
 		}
 		if ((*tmp_room)->link == NULL && ft_strcmp((data->list_path)->last_link_name, data->end) != 0)
 		{
-			// ft_putendl("#eNd_1");
 			path_delete_first_elem(&(data->list_path));
 			return (1);
 		}
 		else if ((*tmp_room)->link != NULL)
-		{
-			// ft_putendl("#eNd_2");
 			path_delete_first_elem(&(data->list_path));
-		}
 		(*tmp_room) = head_room;
-		while (ft_strcmp((*tmp_room)->name, (data->list_path)->last_link_name) != 0)
+		if (data->list_path == NULL)
+			return (1);
+		while ((*tmp_room) != NULL && ft_strcmp((*tmp_room)->name, (data->list_path)->last_link_name) != 0)
 			(*tmp_room) = (*tmp_room)->next;
 		return (2);
 	}

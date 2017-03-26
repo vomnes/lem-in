@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:32:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/24 17:47:51 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/26 18:13:18 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,7 @@ int path_algorithm(t_room **rooms, t_data *data, char call);
 void path_delete_first_elem(t_list_path **list_path);
 void path_list_delete(t_list_path **lst);
 void path_delete(t_path **path);
+void	path_delif_room(t_room **alst, char *data_ref);
+void	path_delif_link(t_link **alst, char *data_ref);
 
 #endif

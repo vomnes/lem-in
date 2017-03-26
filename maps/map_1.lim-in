@@ -1,15 +1,16 @@
-25
+99999999
 ##start
 __Start@@#! 23 3
 2 21 7
 #comment
 Way! 1 3
 4 16 5
-5 9 9
+5 9 42
 6 1 5
 7 4 8
 ##end
-FiNiSh! 9 5
+FiNiSh! 42 42
+Hello 2 4
 FiNiSh!-4
 FiNiSh!-6
 __Start@@#!-Way!
@@ -21,5 +22,5 @@ Way!-5
 2-__Start@@#!
 7-6
 7-2
-7-4
+Way!-4
 6-5
