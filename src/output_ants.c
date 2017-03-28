@@ -6,59 +6,16 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 12:26:43 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/27 18:58:38 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/28 18:34:24 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-/*
-int output_print_ants(int len, int nb_ants, char *tab[3])
-{
-    int integer[len];
-    int i = 0;
-    int count = 0;
-    int ant_value = 0;
 
-    while (i < len)
-        integer[i++] = 0;
-    integer[0] = 0;
-    while (integer[len - 1] != nb_ants)
-    {
-        if (integer[0] < nb_ants && integer[0] >= 0)
-            integer[0]++;
-        else
-            integer[0] = -1;
-        integer[len - 1] = integer[len - 2];
-        if (integer[len - 1] > 0)
-            count++;
-        // #iterate
-        i = len - 3;
-        while (i >= 0)
-        {
-            integer[i + 1] = integer[i];
-            i--;
-        }
-        // Print IT !
-        i = 1;
-        while (i < len)
-        {
-            if (integer[i] == -1 || integer[i] == 0)
-            {
-                i++;
-                continue;
-            }
-            ft_printf("L%d-%s ", integer[i], tab[i]);
-            i++;
-        }
-        ft_printf("\n");
-    }
-    return (0);
-}
-*/
-static int	ft_lst_len(t_path *list)
+static float	ft_lst_len(t_path *list)
 {
 	t_path	*temp;
-	int		count;
+	float	count;
 
 	temp = list;
 	count = 0;
@@ -70,82 +27,85 @@ static int	ft_lst_len(t_path *list)
 	return (count);
 }
 
-void init_tab(int **pos, int len)
+int output_create_move(t_path **path, int *ants_moved, int nb_ants_to_move, int *count_success)
 {
-    int i;
+    t_path *forward;
+    t_path *backward;
 
-    i = 0;
-    if (!(*pos = (int*)malloc(sizeof(*pos) * len)))
-        ;
-    while (i < len)
-        (*pos)[i++] = 0;
-}
-
-void output_print_ants(t_path *path_1, t_path *path_2, t_data *data)
-{
-    int *pos_a;
-    int *pos_b;
- 	  t_path *tmp_a;
-	  t_path *tmp_b;
-    int len_a;
-    int len_b;
-	int start_value;
-
-    ft_putendl("__Algo in__");
-    tmp_a = NULL;
-    tmp_b = NULL;
-    len_a = ft_lst_len(path_1);
-    len_b = ft_lst_len(path_2);
-    init_tab(&pos_a, len_a);
-    init_tab(&pos_b, len_b);
-/*	int i = 0;
-	  while (i < len_a)
-		    ft_putnbr(pos_a[i++]);*/
-    start_value = data->nb_ants;
-    ft_putendl("____");
-    tmp_a = path_1;
-    tmp_b = path_2;
-    ft_putnbr(tmp_a->value);
-    /*while (tmp_a->value != data->nb_ants || tmp_b->value != data->nb_ants)
+    (void)(*count_success);
+    forward = *path;
+    backward = NULL;
+    while (forward != NULL)
     {
-        ft_putendl("-->");
-        tmp_a = path_1->next;
-        tmp_b = path_2->next;
-        ft_putendl("-->");
-        while (tmp_a != NULL || tmp_b != NULL)
-      {
-        if (tmp_a != NULL)
+        backward = forward;
+        if (forward->next == NULL && forward->id_ant > 0 && forward->previous->id_ant == 0)
+            return (1);
+        forward = forward->next;
+    }
+    while (backward != NULL)
+    {
+        forward = backward;
+        if (backward->previous != NULL)
+            ft_swap(&(backward->previous->id_ant), &(backward->id_ant));
+        else
         {
-          if (tmp_a->value)
-            tmp_a->value++;
-            tmp_a = tmp_a->next;
-            ft_printf("L%d-%s ", tmp_a->value, tmp_a->name);
+            if ((*ants_moved) >= nb_ants_to_move)
+                backward->id_ant = 0;
+            else
+            {
+                backward->id_ant = (*ants_moved) + 1;
+                (*ants_moved) += 1;
+            }
         }
-        if (tmp_b != NULL)
-        {
-          tmp_b->value += 2;
-          tmp_b = tmp_b->next;
-          ft_printf("L%d-%s ", tmp_b->value, tmp_b->name);
-        }
-      }
-      ft_putchar('\n');
-  }*/
+        backward = backward->previous;
+    }
+    while (forward != NULL)
+    {
+        backward = forward;
+        if (forward->id_ant > 0 && ft_strcmp(forward->name, (*path)->name) != 0)
+            ft_printf("L%d-%s ", forward->id_ant, forward->name);
+        forward = forward->next;
+    }
+    return (0);
 }
 
-
-// integer[2] = integer[1];
-// integer[1] = integer[0];
-//if (integer[0] > 0)
-//    integer[0]--;
-/*
-int main()
+int output_print_ants(t_path *path_1, t_path *path_2, t_data *data)
 {
-    char *tab[4];
-    tab[0] = ft_strdup("0");
-    tab[1] = ft_strdup("3");
-    tab[2] = ft_strdup("1");
-//    tab[3] = ft_strdup("0");
-    tab[3] = NULL;
-    output_print_ants(3, 652, tab);
+    int nb_ants_a;
+    int nb_ants_b;
+    int count_success_a;
+    int count_success_b;
+    char break_a;
+    char break_b;
+
+    count_success_a = 0;
+    count_success_b = 0;
+    (void)path_2;
+//    checker_nb = 0;
+    nb_ants_b = 0;
+    break_a = 0;
+    break_b = 0;
+    if (path_2 != NULL)
+    {
+        nb_ants_a = ft_lst_len(path_2) / (ft_lst_len(path_1) + ft_lst_len(path_2)) * (float)data->nb_ants + 0.5;
+        nb_ants_b = data->nb_ants - nb_ants_a;
+        ft_printf(">>%d<<>>%d<<\n", nb_ants_a, nb_ants_b);
+    }
+    else
+        nb_ants_a = data->nb_ants;
+    int checker_nb = 0;
+    while (42)
+    {
+        ft_putendl(UNDERLINE"<    >"RESET);
+        if (break_a == 0)
+            if (output_create_move(&path_1, &checker_nb, nb_ants_a, &count_success_a) == 1)
+                break_a = 1;
+        if (break_b == 0)
+            if (output_create_move(&path_2, &checker_nb, nb_ants_b, &count_success_b) == 1)
+                break_b = 1;
+        ft_putchar('\n');
+        if (break_a == 1 && break_b == 1)
+            break ;
+    }
+    return (0);
 }
-*/
