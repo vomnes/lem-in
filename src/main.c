@@ -6,11 +6,26 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:43:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/26 18:14:59 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/27 18:50:43 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+static int	ft_lst_len_lstpath(t_list_path *list)
+{
+	t_list_path	*temp;
+	int		count;
+
+	temp = list;
+	count = 0;
+	while (temp != NULL)
+	{
+		count++;
+		temp = temp->next;
+	}
+	return (count);
+}
 
 int		main(int argc, char **argv)
 {
@@ -18,6 +33,7 @@ int		main(int argc, char **argv)
 	t_room *room;
 	t_data data;
 	int i;
+	int ret;
 
 	(void)argv;
 	input_data = NULL;
@@ -50,6 +66,11 @@ int		main(int argc, char **argv)
 		print_all_paths(data.solution_path);
 		graph_clean(room);
 		path_list_delete(&data.list_path);
+		ret = ft_lst_len_lstpath(data.solution_path);
+		if (ret == 1)
+			output_print_ants((data.solution_path)->path, NULL, &data);
+		else if (ret == 2)
+			output_print_ants((data.solution_path)->path, (data.solution_path)->next->path, &data);
 		path_list_delete(&data.solution_path);
 	}
 	else

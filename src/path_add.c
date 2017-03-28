@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 16:42:30 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/24 11:48:31 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/28 15:51:34 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ static int	path_push_elem_back(t_path **lst_head, char *content)
             return(-1);
     	if (!((*lst_head)->name = ft_strdup(content)))
         	return (-1);
+		(*lst_head)->value = 0;
         (*lst_head)->next = NULL;
+        (*lst_head)->previous = NULL;
     }
     else
     {
@@ -33,7 +35,9 @@ static int	path_push_elem_back(t_path **lst_head, char *content)
             return(-1);
         if (!(new_node->next->name = ft_strdup(content)))
             return (-1);
+        new_node->next->value = 0;
         new_node->next->next = NULL;
+        new_node->next->previous = new_node;
     }
     return (1);
 }
