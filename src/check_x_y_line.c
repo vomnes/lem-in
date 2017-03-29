@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 17:48:09 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/19 12:47:49 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/29 19:11:48 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_malloc_link(char **tmp_name, char *name)
 {
-	if (!(*tmp_name = ft_strnew(ft_strlen(name) + 3)))
+	if (!(*tmp_name = ft_strnew(ft_strlen(name) + 3))) // Check protetcion malloc
 		return (-1);
 	*tmp_name = ft_strcat(*tmp_name, " ");
 	*tmp_name = ft_strcat(*tmp_name, name);
@@ -75,14 +75,12 @@ static int	ft_malloc_coord(char **tmp_name, char *name)
 	return (0);
 }
 
-static int	coord_xy(char *line, char **stock_coord)
+static int	coord_xy(char *line, char **stock_coord, int ret)
 {
-	int		ret;
 	char	*remain;
 	char	*remain_tmp;
 	char 	*tmp_stock_coord;
 
-	ret = 0;
 	remain = ft_strchr(line, ' ');
 	if (ft_is_space_digit_str(remain) == -1)
 		return (-107);
@@ -116,7 +114,11 @@ int			check_x_y_line(char *line, char **stock_name, char **stock_coord)
 	if ((ret = first_check(line, &name)) < 0)
 		return (ret);
 	if (ft_malloc_link(&tmp_name, name) == -1)
+	{
+		ft_strdel(&name);
+		ft_strdel(&tmp_name);
 		return (-1);
+	}
 	if (ft_strstr(*stock_name, tmp_name) != NULL)
 	{
 		ft_strdel(&name);
@@ -129,7 +131,7 @@ int			check_x_y_line(char *line, char **stock_name, char **stock_coord)
 	ft_strdel(&name);
 	if (!(*stock_name = ft_strjoin_free(*stock_name, " ")))
 		return (-1);
-	if ((ret = coord_xy(line, &(*stock_coord))) < 0)
+	if ((ret = coord_xy(line, &(*stock_coord), 0)) < 0)
 		return (ret);
 	return (0);
 }

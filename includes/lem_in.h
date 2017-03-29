@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:32:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/28 17:10:37 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/29 18:23:24 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,12 +115,13 @@ int			data_validation(int *num_line, t_validation *val, char **line_input);
 int implementation_data_val(char ***input_data);
 
 /* Graph */
-int graph_create(char **input_data, t_room **room, t_data *data);
+int graph_create(char **input_data, t_room **room, t_data *data, int i);
 void print_graph(t_room *lst);
 void print_link(t_link *lst);
-int	graph_add_room(t_room **lst_head, char *room, int x, int y, char state);
+int	graph_add_room(t_room **lst_head, t_collect *collect);
 int graph_add_link(char *selected_room, char *room, t_room **list_room);
 void graph_clean(t_room *lst);
+int graph_get_x_y(char *line, t_collect *collect);
 
 /* Path */
 
@@ -135,8 +136,9 @@ void path_list_delete(t_list_path **lst);
 void path_delete(t_path **path);
 void	path_delif_room(t_room **alst, char *data_ref);
 void	path_delif_link(t_link **alst, char *data_ref);
+float	path_len(t_path *list);
 
 /* Output */
-int output_print_ants(t_path *path_1, t_path *path_2, t_data *data);
+void output_print_ants(t_path *path_1, t_path *path_2, t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 13:28:32 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/23 17:00:26 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/29 19:10:45 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	init_val(t_validation *val)
 	val->end_ok = 0;
 	val->end_flag = 0;
 	val->space = 0;
-	if (!(val->stock_name = ft_strdup(" ")))
+	if (!(val->stock_name = ft_strdup(" "))) // Check protection malloc
 		return (-1);
 	if (!(val->stock_coord = ft_strdup("_")))
 		return (-1);

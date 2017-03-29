@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 16:08:45 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/23 16:58:27 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/29 19:11:25 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int implementation_data_val(char ***input_data)
 			ft_putstr_fd("]", 2);
 		}
 		ft_putstr_fd("\n", 2);
+		ft_strdel(&line_input);
 		ft_kill_char(&validation.stock_coord, &validation.stock_name, &validation.line);
 		return (-1);
 	}

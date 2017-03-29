@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 13:29:41 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/29 17:18:44 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/29 17:37:54 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static t_room *graph_add_elem(t_collect *collect)
 	return (room);
 }
 
-int	graph_add_room(t_room **lst_head, t_collect *collect)//char *room, int x, int y, char state)
+int	graph_add_room(t_room **lst_head, t_collect *collect)
 {
 	t_room	*new_node;
 

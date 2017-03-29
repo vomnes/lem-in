@@ -17,6 +17,7 @@ SRC =	./src/main.c \
 		./src/graph_add_room.c \
 		./src/graph_create.c \
 		./src/graph_clean.c \
+		./src/graph_get_x_y.c \
 		./src/graph_tool.c \
 		./src/path_algorithm.c \
 		./src/path_add.c \
@@ -25,7 +26,9 @@ SRC =	./src/main.c \
 		./src/path_delete_list.c \
 		./src/path_delif_room.c \
 		./src/path_delif_link.c \
-		./src/path_tool.c
+		./src/path_tool.c \
+		./src/path_len.c \
+		./src/output_ants.c
 
 OBJ =	./obj/main.o \
 		./obj/check_number.o \
@@ -44,6 +47,7 @@ OBJ =	./obj/main.o \
 		./obj/graph_add_room.o \
 		./obj/graph_create.o \
 		./obj/graph_clean.o \
+		./obj/graph_get_x_y.o \
 		./obj/graph_tool.o \
 		./obj/path_algorithm.o \
 		./obj/path_add.o \
@@ -52,7 +56,9 @@ OBJ =	./obj/main.o \
 		./obj/path_delete_list.o \
 		./obj/path_delif_room.o \
 		./obj/path_delif_link.o \
-		./obj/path_tool.o
+		./obj/path_tool.o \
+		./obj/path_len.o \
+		./obj/output_ants.o
 
 MAKE = make
 
