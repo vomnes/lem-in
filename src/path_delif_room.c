@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 18:10:05 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/26 18:15:04 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/29 16:57:16 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@ static void graph_clean_link(t_link **lst)
 	tmp = NULL;
 }
 
+static void all_zero(t_room **lst)
+{
+	(*lst)->x = 0;
+	(*lst)->y = 0;
+	(*lst)->state = 0;
+	(*lst)->visited = 0;
+}
+
 void	path_delif_room(t_room **alst, char *data_ref)
 {
 	t_room	*tmp;
@@ -42,10 +50,7 @@ void	path_delif_room(t_room **alst, char *data_ref)
 			(*indirect) = (*indirect)->next;
 			ft_strdel(&(tmp->name));
 			graph_clean_link(&tmp->link);
-			tmp->x = 0;
-			tmp->y = 0;
-			tmp->state = 0;
-			tmp->visited = 0;
+			all_zero(&tmp);
 			free(tmp);
 		}
 		else

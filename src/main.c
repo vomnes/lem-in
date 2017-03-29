@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:43:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/29 13:38:11 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/29 15:49:42 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,15 @@ static void clean_all(t_room **room, t_data *data, char ***input_data)
 	ft_strdel(&(data->end));
 }
 
-static void print_output(t_data *data)
+static void print_output(t_data *data, char **input_data)
 {
 	int ret;
+	int i;
 
 	ret = 0;
+	i = 0;
+	while (input_data[i] != NULL)
+		ft_putendl(input_data[i++]);
 	ret = ft_lst_len_lstpath(data->solution_path);
 	if (ret == 1)
 		output_print_ants((data->solution_path)->path, NULL, data);
@@ -97,7 +101,7 @@ int		main(int argc, char **argv)
 			return (-1);
 		if (run_algorithm(&data, &room) == -1)
 			return (-1);
-		print_output(&data);
+		print_output(&data, input_data);
 	}
 	else
 	{

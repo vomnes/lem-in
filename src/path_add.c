@@ -6,11 +6,25 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 16:42:30 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/28 17:12:00 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/29 16:52:22 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/lem_in.h"
+
+static int path_add_end(t_path **new_node, char *content)
+{
+    while ((*new_node)->next != NULL)
+        (*new_node) = (*new_node)->next;
+    if (!((*new_node)->next = (t_path*)malloc(sizeof(t_path))))
+        return(-1);
+    if (!((*new_node)->next->name = ft_strdup(content)))
+        return (-1);
+    (*new_node)->next->id_ant = 0;
+    (*new_node)->next->next = NULL;
+    (*new_node)->next->previous = (*new_node);
+    return (0);
+}
 
 static int	path_push_elem_back(t_path **lst_head, char *content)
 {
@@ -28,17 +42,8 @@ static int	path_push_elem_back(t_path **lst_head, char *content)
         (*lst_head)->previous = NULL;
     }
     else
-    {
-        while (new_node->next != NULL)
-            new_node = new_node->next;
-        if (!(new_node->next = (t_path*)malloc(sizeof(t_path))))
-            return(-1);
-        if (!(new_node->next->name = ft_strdup(content)))
+        if (path_add_end(&new_node, content) == -1)
             return (-1);
-        new_node->next->id_ant = 0;
-        new_node->next->next = NULL;
-        new_node->next->previous = new_node;
-    }
     return (1);
 }
 
