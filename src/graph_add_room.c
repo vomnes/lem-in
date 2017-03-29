@@ -6,42 +6,46 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 13:29:41 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/22 12:11:56 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/29 17:18:44 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-int	graph_add_room(t_room **lst_head, char *room, int x, int y, char state)
+static t_room *graph_add_elem(t_collect *collect)
+{
+	t_room *room;
+
+	room = NULL;
+	if (!(room = (t_room*)malloc(sizeof(t_room))))
+		return(NULL);
+	if (!((room)->name = ft_strdup(collect->name)))
+		return (NULL);
+	room->x = collect->coord_x;
+	room->y = collect->coord_x;
+	room->state = collect->statut;
+	room->visited = 0;
+	room->link = NULL;
+	room->next = NULL;
+	return (room);
+}
+
+int	graph_add_room(t_room **lst_head, t_collect *collect)//char *room, int x, int y, char state)
 {
 	t_room	*new_node;
 
 	new_node = *lst_head;
 	if(*lst_head == NULL)
 	{
-		if (!(*lst_head = (t_room*)malloc(sizeof(t_room))))
-			return(-1);
-		(*lst_head)->name = ft_strdup(room);
-		(*lst_head)->x = x;
-		(*lst_head)->y = y;
-		(*lst_head)->state = state;
-		(*lst_head)->visited = 0;
-		(*lst_head)->link = NULL;
-		(*lst_head)->next = NULL;
+		if (!(*lst_head = graph_add_elem(collect)))
+			return (-1);
 	}
 	else
 	{
 		while (new_node->next != NULL)
 			new_node = new_node->next;
-		if (!(new_node->next = (t_room*)malloc(sizeof(t_room))))
-			return(-1);
-		new_node->next->name = ft_strdup(room);
-		new_node->next->x = x;
-		new_node->next->y = y;
-		new_node->next->state = state;
-		new_node->next->visited = 0;
-		new_node->next->link = NULL;
-		new_node->next->next = NULL;
+		if (!(new_node->next = graph_add_elem(collect)))
+			return (-1);
 	}
 	return (1);
 }

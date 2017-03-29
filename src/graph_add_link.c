@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 13:27:32 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/22 14:14:49 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/29 17:31:10 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,25 @@ static int link_exist(t_link *list_link, char *name)
 	return (0);
 }
 
+static t_link *add_one_link(char *link_name, t_room *tmp_room)
+{
+	t_link *new_node;
+	t_room *tmp;
+
+	new_node = NULL;
+	tmp = tmp_room;
+	if (!(new_node = (t_link*)malloc(sizeof(t_link))))
+		return(NULL);
+	while (tmp != NULL && ft_strcmp(tmp->name, link_name) != 0)
+		tmp = tmp->next;
+	new_node->link_room = tmp;
+	if (!(new_node->name = ft_strdup(link_name)))
+		return (NULL);
+	new_node->visited = 0;
+	new_node->next = NULL;
+	return (new_node);
+}
+
 static int	push_link(t_room *rooms, t_link **list_link, char *link_name)
 {
 	t_link	*new_node;
@@ -37,29 +56,15 @@ static int	push_link(t_room *rooms, t_link **list_link, char *link_name)
 		return (0);
 	if(*list_link == NULL)
 	{
-		if (!(*list_link = (t_link*)malloc(sizeof(t_link))))
-			return(-1);
-		while (tmp_room != NULL && ft_strcmp(tmp_room->name, link_name) != 0)
-			tmp_room = tmp_room->next;
-		(*list_link)->link_room = tmp_room;
-		if (!((*list_link)->name = ft_strdup(link_name)))
+		if (!(*list_link = add_one_link(link_name, tmp_room)))
 			return (-1);
-		(*list_link)->visited = 0;
-		(*list_link)->next = NULL;
 	}
 	else
 	{
 		while (new_node->next != NULL)
 			new_node = new_node->next;
-		if (!(new_node->next = (t_link*)malloc(sizeof(t_link))))
-			return(-1);
-		while (tmp_room != NULL && ft_strcmp(tmp_room->name, link_name) != 0)
-			tmp_room = tmp_room->next;
-		new_node->next->link_room = tmp_room;
-		if (!(new_node->next->name = ft_strdup(link_name)))
+		if (!(new_node->next = add_one_link(link_name, tmp_room)))
 			return (-1);
-		new_node->next->visited = 0;
-		new_node->next->next = NULL;
 	}
 	return (1);
 }
