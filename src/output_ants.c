@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 12:26:43 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/29 12:52:14 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/29 14:15:22 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int output_print_ants(t_path *path_1, t_path *path_2, t_data *data)
     {
         nb_ants_a = ft_lst_len(path_2) / (ft_lst_len(path_1) + ft_lst_len(path_2)) * (float)data->nb_ants + 0.5;
         nb_ants_b = data->nb_ants - nb_ants_a;
-        ft_printf(">>%d<<>>%d<<\n", nb_ants_a, nb_ants_b);
     }
     else
             nb_ants_a = data->nb_ants;

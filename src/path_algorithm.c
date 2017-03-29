@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 16:50:46 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/26 11:41:40 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/29 13:58:10 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int path_algorithm(t_room **rooms, t_data *data, char call)
 	int ret;
 
 	ret = 0;
-	ft_putendl(GOLD"====[START ALGORITHM]===="RESET);
 	tmp_room = *rooms;
 	tmp_list = data->list_path;
 	while (ft_strcmp(tmp_room->name, data->start) != 0)

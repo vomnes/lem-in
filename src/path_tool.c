@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 16:40:04 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/22 17:09:36 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/29 13:59:36 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void print_path(t_path *lst)
 	t_path *tmp;
 
 	tmp = lst;
-	ft_putstr(Y_GREEN"Print Path ===> "RESET);
+	ft_putstr(Y_GREEN"Path : "RESET);
 	while(tmp != NULL)
 	{
 		ft_putstr(tmp->name);
@@ -38,9 +38,9 @@ void print_all_paths(t_list_path *lst)
 		ft_putendl(GREEN"NO PATH"RESET);
 	while(tmp != NULL)
 	{
-		ft_printf("[%s] >> ", tmp->last_link_name);
+		// ft_printf("[%s] >> ", tmp->last_link_name);
 		print_path(tmp->path);
 		tmp = tmp->next;
 	}
-	ft_putendl(GREEN"=== [    End    ] ==="RESET);
+	// ft_putendl(GREEN"=== [    End    ] ==="RESET);
 }
