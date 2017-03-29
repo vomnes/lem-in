@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:43:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/27 18:50:43 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/29 12:54:55 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,3 +88,4 @@ int		main(int argc, char **argv)
 
 //Need to check comment before nb ants \!/
 //Need to check no more than one start \!/
+//Need to check number of end \!/

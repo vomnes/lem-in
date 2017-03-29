@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:32:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/26 18:13:18 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/28 17:10:37 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ typedef struct		s_room
 typedef struct		 s_path
 {
 	struct	s_path   *next;
+	struct	s_path   *previous;
 	char		     *name;
+	int 			id_ant;
 }					t_path;
 
 typedef struct 				s_list_path
@@ -80,6 +82,13 @@ typedef struct 				s_list_path
 	char		     		*last_link_name;
 	t_path 					*path;
 }							t_list_path;
+
+typedef struct		 s_ants
+{
+	struct	s_ants   *next;
+	char		     *name;
+	int 			num_ant;
+}					t_ants;
 
 typedef struct s_data
 {
@@ -126,5 +135,8 @@ void path_list_delete(t_list_path **lst);
 void path_delete(t_path **path);
 void	path_delif_room(t_room **alst, char *data_ref);
 void	path_delif_link(t_link **alst, char *data_ref);
+
+/* Output */
+int output_print_ants(t_path *path_1, t_path *path_2, t_data *data);
 
 #endif
