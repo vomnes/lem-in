@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 15:07:53 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/30 12:22:25 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/30 12:55:18 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	check_hash_line(t_validation *val)
 	if (ft_strcmp(LINE, "##start") == 0)
 	{
 		if (val->end_flag == 1)
-			return (-1);
+			return (-30);
 		val->start_ok = 1;
 		if (val->start_flag == 1)
 			return (-40);
@@ -50,7 +50,7 @@ int			analyse_line(int *ret, t_validation *val)
 {
 	if (*LINE == '#')
 		*ret = check_hash_line(val);
-	else if (val->space == 0 && val->end_flag == 0)
+	else if (val->space == 0 && val->end_flag == 0 && val->start_flag == 0)
 		*ret = check_link(LINE, val->stock_name);
 	else if (val->space == 2)
 	{
