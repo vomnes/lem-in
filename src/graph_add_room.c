@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 13:29:41 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/29 17:37:54 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/30 18:05:12 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_room *graph_add_elem(t_collect *collect)
 	if (!((room)->name = ft_strdup(collect->name)))
 		return (NULL);
 	room->x = collect->coord_x;
-	room->y = collect->coord_x;
+	room->y = collect->coord_y;
 	room->state = collect->statut;
 	room->visited = 0;
 	room->link = NULL;
