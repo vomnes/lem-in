@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:43:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/29 19:11:14 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/30 11:48:49 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,11 @@ static void clean_all(t_room **room, t_data *data, char ***input_data)
 
 	i = 0;
 	path_list_delete(&data->solution_path);
-	while ((*input_data)[i] != NULL)
-		ft_strdel(&(*input_data)[i++]);
+	if (*input_data)
+	{
+		while ((*input_data)[i] != NULL)
+			ft_strdel(&(*input_data)[i++]);
+	}
 	graph_clean(*room);
 	path_list_delete(&data->list_path);
 	ft_strdel(*input_data);
@@ -95,11 +98,11 @@ int		main(int argc, char **argv)
 	room = NULL;
 	if (argc <= 1)
 	{
-		if (implementation_data_val(&input_data) == -1)
+		if (implementation_data_val(&input_data, 1) == -1)
 			return (-1);
 		if (graph_create(input_data, &room, &data, 0) == -1)
 			return (-1);
-		print_graph(room);
+		// print_graph(room);
 		if (run_algorithm(&data, &room) == -1)
 			return (-1);
 		print_output(&data, input_data);

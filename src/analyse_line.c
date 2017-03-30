@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 15:07:53 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/15 15:15:51 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/30 12:22:25 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static int	check_hash_line(t_validation *val)
 			return (-40);
 		val->start_flag = 1;
 	}
+	if (ft_strcmp(LINE, "##end") == 0 && val->end_ok == 1)
+		return (-25);
 	if (ft_strcmp(LINE, "##end") == 0)
 	{
 		val->end_ok += 1;
