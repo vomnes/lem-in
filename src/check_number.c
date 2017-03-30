@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 16:15:42 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/15 15:19:28 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/30 19:10:25 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	check_number(char *line)
 {
-	char	str_number[10];
+	char	str_number[11];
 	int		number;
 	int		index;
 
 	index = 0;
-	ft_bzero(str_number, 10);
+	ft_bzero(str_number, 11);
 	while (ft_isdigit(line[index]))
 	{
 		if (index > 9)

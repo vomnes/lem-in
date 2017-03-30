@@ -6,13 +6,13 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 16:40:04 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/29 13:59:36 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/30 19:28:33 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/lem_in.h"
 
-void print_path(t_path *lst)
+static void print_path(t_path *lst)
 {
 	t_path *tmp;
 
@@ -36,11 +36,14 @@ void print_all_paths(t_list_path *lst)
 	ft_putendl(GREEN"=== [Print Paths] ==="RESET);
 	if (tmp == NULL)
 		ft_putendl(GREEN"NO PATH"RESET);
+	if (path_len(tmp->path) == 2)
+	{
+		print_path(tmp->path);
+		return ;
+	}
 	while(tmp != NULL)
 	{
-		// ft_printf("[%s] >> ", tmp->last_link_name);
 		print_path(tmp->path);
 		tmp = tmp->next;
 	}
-	// ft_putendl(GREEN"=== [    End    ] ==="RESET);
 }

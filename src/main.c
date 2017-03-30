@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:43:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/30 16:19:14 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/30 19:08:45 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int		main(int argc, char **argv)
 			graph_clean(room);
 			return (-1);
 		}
+		// print_graph(room);
 		if (run_algorithm(&data, &room) == -1)
 		{
 			clean_all(&room, &data, &input_data);

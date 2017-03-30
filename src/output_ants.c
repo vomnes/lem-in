@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 12:26:43 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/30 15:36:34 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/30 19:25:32 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,20 @@ void output_ants(t_path *path_1, t_path *path_2, t_data *data)
 {
     int nb_ants[2];
     char break_print[2];
+    int id_ant;
 
+    id_ant = 1;
     nb_ants[0] = 0;
     break_print[0] = 0;
     break_print[1] = 0;
+    if (path_len(path_1) == 2)
+    {
+        ft_putchar('\n');
+        while (id_ant <= data->nb_ants)
+            ft_printf("L%d-%s ", id_ant++, path_1->next->name);
+        ft_putchar('\n');
+        return ;
+    }
     if (path_2 != NULL)
     {
         nb_ants[0] = path_len(path_2) / (path_len(path_1) + \
