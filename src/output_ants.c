@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 12:26:43 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/29 16:39:31 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/30 15:36:34 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ t_path *path_1, t_path *path_2)
     }
 }
 
-void output_print_ants(t_path *path_1, t_path *path_2, t_data *data)
+void output_ants(t_path *path_1, t_path *path_2, t_data *data)
 {
     int nb_ants[2];
     char break_print[2];

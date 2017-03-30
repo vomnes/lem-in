@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:32:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/29 18:23:24 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/30 16:42:33 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # define END 1
 # define START 2
 
-# define OFF_ADD 0
-# define ON_ADD 1
+# define ADD_SOLUTION 0
+# define ADD_PATH 1
 
 # define ABS(x) (((x >> 31) ^ x) - (x >> 31))
 
@@ -112,7 +112,7 @@ int check_x_y_line(char *line, char **stock_name, char **stock_coord);
 int check_link(char *line, char *stock_name);
 int analyse_line(int *ret, t_validation *val);
 int			data_validation(int *num_line, t_validation *val, char **line_input);
-int implementation_data_val(char ***input_data);
+int implementation_data_val(char ***input_data, char print_message);
 
 /* Graph */
 int graph_create(char **input_data, t_room **room, t_data *data, int i);
@@ -139,6 +139,7 @@ void	path_delif_link(t_link **alst, char *data_ref);
 float	path_len(t_path *list);
 
 /* Output */
-void output_print_ants(t_path *path_1, t_path *path_2, t_data *data);
+void output_ants(t_path *path_1, t_path *path_2, t_data *data);
+void output_print(t_data *data, char **input_data);
 
 #endif

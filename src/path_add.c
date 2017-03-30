@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 16:42:30 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/29 16:52:22 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/30 16:44:57 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static t_path *list_duplicate(t_path *original, char *new_one, char on_off)
             return (NULL);
         tmp = tmp->next;
     }
-    if (on_off == ON_ADD)
+    if (on_off == ADD_PATH)
         if (path_push_elem_back(&duplicate, new_one) == -1)
             return (NULL);
     return (duplicate);
