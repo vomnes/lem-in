@@ -6,42 +6,11 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:43:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/31 11:57:05 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/31 14:22:11 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-/*
-void print_link(t_link *lst)
-{
-	t_link *tmp;
-	t_room *test;
-
-	tmp = lst;
-	while(tmp != NULL)
-	{
-		test = tmp->link_room;
-		printf("-->link : %s - x : %d - y : %d\n", test->name, test->x, test->y);
-		tmp = tmp->next;
-	}
-}
-
-void print_graph(t_room *lst)
-{
-	t_room *tmp;
-
-	tmp = lst;
-	ft_putendl(Y_GREEN"=== [Print Graph] ==="RESET);
-	while(tmp != NULL)
-	{
-		printf("room : %s - x : %d - y : %d - state : %d\n", tmp->name, \
-		tmp->x, tmp->y, tmp->state);
-		print_link(tmp->link);
-		tmp = tmp->next;
-	}
-}
-*/
 
 static void	init_elem(t_path **path, int *ret, t_data *data)
 {
