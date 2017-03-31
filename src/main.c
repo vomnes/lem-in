@@ -6,21 +6,26 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 10:43:28 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/30 19:08:45 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/31 10:40:10 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+static void init_elem(t_path **path, int *ret, t_data *data)
+{
+	*path = NULL;
+	*ret = 0;
+	data->list_path = NULL;
+	data->solution_path = NULL;
+}
 
 static int run_algorithm(t_data *data, t_room **room)
 {
 	t_path *path;
 	int ret;
 
-	path = NULL;
-	ret = 0;
-	data->list_path = NULL;
-	data->solution_path = NULL;
+	init_elem(&path, &ret, data);
 	if ((ret = path_algorithm(&(*room), data, 1)) == -1)
 		return (-1);
 	if (ret == -2)
@@ -60,43 +65,52 @@ static void clean_all(t_room **room, t_data *data, char ***input_data)
 	ft_strdel(&(data->end));
 }
 
+static int run(char ***input_data, t_data *data, t_room **room, char bonus)
+{
+	if (implementation_data_val(&(*input_data), bonus) == -1)
+		return (-1);
+	if (graph_create(*input_data, &(*room), data, 0) == -1)
+	{
+		graph_clean(*room);
+		return (-1);
+	}
+	if (run_algorithm(data, &(*room)) == -1)
+	{
+		clean_all(&(*room), data, &(*input_data));
+		if (bonus == 1)
+			ft_putstr_fd("ERROR - No Path\n", 2);
+		else
+			ft_putstr_fd("ERROR\n", 2);
+		return (-1);
+	}
+	output_print(data, *input_data);
+	return (0);
+}
+
 int		main(int argc, char **argv)
 {
 	char **input_data;
 	t_room *room;
 	t_data data;
 
-	(void)argv;
 	input_data = NULL;
 	room = NULL;
 	if (argc <= 1)
 	{
-		if (implementation_data_val(&input_data, 1) == -1)
+		if (run(&input_data, &data, &room, 0) == -1)
 			return (-1);
-		if (graph_create(input_data, &room, &data, 0) == -1)
-		{
-			graph_clean(room);
+	}
+	else if (argc == 2 && (ft_strcmp(argv[1], "-bonus") == 0 || \
+	ft_strcmp(argv[1], "-b") == 0))
+	{
+		if (run(&input_data, &data, &room, 1) == -1)
 			return (-1);
-		}
-		// print_graph(room);
-		if (run_algorithm(&data, &room) == -1)
-		{
-			clean_all(&room, &data, &input_data);
-			ft_putstr_fd("ERROR\n", 2);
-			return (-1);
-		}
-		output_print(&data, input_data);
 	}
 	else
 	{
-		ft_putendl("Usage : ./lem-in < [map_name]");
+		ft_putendl("Usage : ./lem-in [-bonus] < [map_name]");
 		return (0);
 	}
 	clean_all(&room, &data, &input_data);
 	return (0);
 }
-
-//Need to check comment before nb ants \!/
-//Need to check no more than one start \!/
-//Need to check number of end \!/
-//Need to check only start-end
