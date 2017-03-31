@@ -6,13 +6,13 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 16:51:10 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/30 15:47:46 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/31 10:47:44 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "lem_in.h"
+#include "lem_in.h"
 
-static void init_collect(t_collect *collect)
+static void	init_collect(t_collect *collect)
 {
 	collect->coord_x = 0;
 	collect->coord_y = 0;
@@ -20,7 +20,8 @@ static void init_collect(t_collect *collect)
 	collect->statut = 0;
 }
 
-static int create_room(t_collect *collect, char *line, t_room **room, t_data *data)
+static int	create_room(t_collect *collect, char *line, t_room **room, \
+t_data *data)
 {
 	if (!(collect->name = ft_strndup(line,\
 	ft_index(line, ' '))))
@@ -37,7 +38,7 @@ static int create_room(t_collect *collect, char *line, t_room **room, t_data *da
 	return (0);
 }
 
-static int create_link(t_collect *collect, char *line, t_room **room)
+static int	create_link(t_collect *collect, char *line, t_room **room)
 {
 	if (!(collect->name_1 = ft_strndup(line, ft_index(line, '-'))))
 		return (-1);
@@ -50,7 +51,7 @@ static int create_link(t_collect *collect, char *line, t_room **room)
 	return (0);
 }
 
-static void check_start_end(char *line, t_collect *collect, int *i)
+static void	check_start_end(char *line, t_collect *collect, int *i)
 {
 	if (ft_strcmp(line, "##start") == 0)
 		collect->statut = START;
@@ -59,7 +60,7 @@ static void check_start_end(char *line, t_collect *collect, int *i)
 	(*i)++;
 }
 
-int graph_create(char **input_data, t_room **room, t_data *data, int i)
+int			graph_create(char **input_data, t_room **room, t_data *data, int i)
 {
 	t_collect collect;
 

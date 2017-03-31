@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 13:28:32 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/30 12:13:28 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/31 11:22:14 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	init_val(t_validation *val)
 	val->end_flag = 0;
 	val->space = 0;
 	if (!(val->stock_name = ft_strdup(" ")))
-		exit (-1);
+		exit(-1);
 	if (!(val->stock_coord = ft_strdup("_")))
 		return (-1);
 	val->count_room = 0;
@@ -54,15 +54,10 @@ static int	global_analyse(t_validation *val)
 	{
 		if (ft_strcmp(LINE, "##start") == 0 || ft_strcmp(LINE, "##end") == 0)
 			return (-10);
-		ft_strdel(&LINE);
-		return (0);
 	}
 	else if (ft_isdigitstr(LINE) == 1 && ft_is_signed_integer(LINE) == 0\
 	&& *LINE != '\0' && val->nb_ant_ok == 0)
-	{
 		val->nb_ant_ok = 1;
-		ft_strdel(&LINE);
-	}
 	else if ((ft_isdigitstr(LINE) == 0 || ft_is_signed_integer(LINE) == -1\
 	|| *LINE != '\0') && val->nb_ant_ok == 0)
 		return (-10);
@@ -90,9 +85,9 @@ int			data_validation(int *num_line, t_validation *val, char **line_input)
 	while (get_next_line(0, &LINE) > 0)
 	{
 		if (!(*line_input = ft_strjoin_free(*line_input, LINE)))
-			exit (-1);
+			exit(-1);
 		if (!(*line_input = ft_strjoin_free(*line_input, "\n")))
-			exit (-1);
+			exit(-1);
 		(*num_line)++;
 		if ((ret = global_analyse(val)) < 0)
 			return (ret);

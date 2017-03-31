@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 16:50:46 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/30 17:03:30 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/31 11:06:46 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #define NO_PATH 3
 #define LAST_ROOM (data->list_path)->last_link_name
 
-static void move_to_right_room(t_room **tmp_room, t_link **tmp_link, \
+static void	move_to_right_room(t_room **tmp_room, t_link **tmp_link, \
 char call, t_data *data)
 {
 	*tmp_link = (*tmp_room)->link;
@@ -29,7 +29,8 @@ char call, t_data *data)
 		*tmp_link = (*tmp_link)->next;
 }
 
-static int all_link_checked(t_data *data, t_room **tmp_room, t_room **head_room)
+static int	all_link_checked(t_data *data, t_room **tmp_room, \
+t_room **head_room)
 {
 	if (ft_strcmp(LAST_ROOM, data->end) == 0)
 	{
@@ -53,7 +54,7 @@ static int all_link_checked(t_data *data, t_room **tmp_room, t_room **head_room)
 	return (NEXT_LINK);
 }
 
-static int breadth_first_search(t_room **tmp_room, t_data *data, \
+static int	breadth_first_search(t_room **tmp_room, t_data *data, \
 t_room *head_room, char call)
 {
 	t_link *tmp_link;
@@ -67,11 +68,11 @@ t_room *head_room, char call)
 	return (NEXT);
 }
 
-int path_algorithm(t_room **rooms, t_data *data, char call)
+int			path_algorithm(t_room **rooms, t_data *data, char call)
 {
-	t_list_path *tmp_list;
-	t_room *tmp_room;
-	int ret;
+	t_list_path	*tmp_list;
+	t_room		*tmp_room;
+	int			ret;
 
 	ret = 0;
 	tmp_room = *rooms;

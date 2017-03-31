@@ -1,34 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path_delif_link.c                                  :+:      :+:    :+:   */
+/*   check_coord_number.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/26 18:11:46 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/31 11:08:58 by vomnes           ###   ########.fr       */
+/*   Created: 2017/03/31 11:28:09 by vomnes            #+#    #+#             */
+/*   Updated: 2017/03/31 11:29:15 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	path_delif_link(t_link **alst, char *data_ref)
+int	check_coord_number(char *line)
 {
-	t_link	*tmp;
-	t_link	**indirect;
+	char	x_collected;
+	int		i;
 
-	indirect = alst;
-	while (*indirect)
+	i = 0;
+	x_collected = 0;
+	while (line[i])
 	{
-		if (ft_strcmp((*indirect)->name, data_ref) == 0)
+		if (ft_isdigit(line[i]))
 		{
-			tmp = (*indirect);
-			(*indirect) = (*indirect)->next;
-			ft_strdel(&(tmp->name));
-			tmp->visited = 0;
-			free(tmp);
+			if (x_collected == 0)
+			{
+				if (collect_number(line, &i) == -1)
+					return (-101);
+				x_collected = 1;
+			}
+			else if (x_collected == 1)
+			{
+				if (collect_number(line, &i) == -1)
+					return (-102);
+				return (0);
+			}
 		}
-		else
-			indirect = &(*indirect)->next;
+		i++;
 	}
+	return (0);
 }

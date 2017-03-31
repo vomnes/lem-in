@@ -10,6 +10,8 @@ SRC =	./src/main.c \
 		./src/check_link.c \
 		./src/ft_strjoin_free.c \
 		./src/check_x_y_line.c \
+		./src/check_coord_number.c \
+		./src/check_name.c \
 		./src/analyse_line.c \
 		./src/implementation_data_val.c \
 		./src/data_validation.c \
@@ -18,7 +20,6 @@ SRC =	./src/main.c \
 		./src/graph_create.c \
 		./src/graph_clean.c \
 		./src/graph_get_x_y.c \
-		./src/graph_tool.c \
 		./src/path_algorithm.c \
 		./src/path_add.c \
 		./src/path_delete.c \
@@ -26,9 +27,10 @@ SRC =	./src/main.c \
 		./src/path_delete_list.c \
 		./src/path_delif_room.c \
 		./src/path_delif_link.c \
-		./src/path_tool.c \
+		./src/path_print.c \
 		./src/path_len.c \
-		./src/output_ants.c
+		./src/output_ants.c \
+		./src/output_print.c
 
 OBJ =	./obj/main.o \
 		./obj/check_number.o \
@@ -37,9 +39,11 @@ OBJ =	./obj/main.o \
 		./obj/ft_is_signed_integer.o \
 		./obj/ft_is_space_digit_str.o \
 		./obj/ft_isdigitstr.o \
+		./obj/check_name.o \
 		./obj/check_link.o \
 		./obj/ft_strjoin_free.o \
 		./obj/check_x_y_line.o \
+		./obj/check_coord_number.o \
 		./obj/analyse_line.o \
 		./obj/implementation_data_val.o \
 		./obj/data_validation.o \
@@ -48,7 +52,6 @@ OBJ =	./obj/main.o \
 		./obj/graph_create.o \
 		./obj/graph_clean.o \
 		./obj/graph_get_x_y.o \
-		./obj/graph_tool.o \
 		./obj/path_algorithm.o \
 		./obj/path_add.o \
 		./obj/path_delete.o \
@@ -56,9 +59,10 @@ OBJ =	./obj/main.o \
 		./obj/path_delete_list.o \
 		./obj/path_delif_room.o \
 		./obj/path_delif_link.o \
-		./obj/path_tool.o \
+		./obj/path_print.o \
 		./obj/path_len.o \
-		./obj/output_ants.o
+		./obj/output_ants.o \
+		./obj/output_print.o
 
 MAKE = make
 

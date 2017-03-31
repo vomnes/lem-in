@@ -6,13 +6,13 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 11:38:37 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/24 11:42:52 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/31 11:07:11 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void path_delete(t_path **path)
+void	path_delete(t_path **path)
 {
 	t_path *tmp;
 	t_path *tmp_2;

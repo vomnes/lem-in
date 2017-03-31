@@ -6,16 +6,16 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 18:22:12 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/29 18:22:43 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/31 10:48:18 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-int graph_get_x_y(char *line, t_collect *collect)
+int	graph_get_x_y(char *line, t_collect *collect)
 {
-	int i;
-	char x_collected;
+	int		i;
+	char	x_collected;
 
 	i = 0;
 	x_collected = 0;

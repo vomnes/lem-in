@@ -6,13 +6,13 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 11:39:44 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/24 11:45:50 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/31 11:08:03 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void path_list_delete(t_list_path **lst)
+void	path_list_delete(t_list_path **lst)
 {
 	t_list_path *tmp;
 	t_list_path *tmp_2;
