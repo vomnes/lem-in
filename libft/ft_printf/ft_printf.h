@@ -6,7 +6,7 @@
 /*   By: vomnes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 15:13:19 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/04 10:36:58 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/19 15:18:22 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <unistd.h>
-# include <stdio.h>
 # include <wchar.h>
 # include <locale.h>
 # include "../includes/libft.h"

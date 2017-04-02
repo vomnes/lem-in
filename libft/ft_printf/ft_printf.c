@@ -6,7 +6,7 @@
 /*   By: vomnes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 18:34:05 by vomnes            #+#    #+#             */
-/*   Updated: 2017/01/20 16:36:32 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/31 15:00:37 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ static int	ft_run(char const *format, t_args *elem, va_list *args, int *len)
 	return (*len);
 }
 
-static int ft_run_all(const char *format, t_args *elem, va_list *args, int *len)
+static int	ft_run_all(const char *format, t_args *elem, \
+va_list *args, int *len)
 {
 	if (ft_manage_parsing(format, elem) == -1)
 	{
@@ -76,7 +77,7 @@ int			ft_printf(const char *format, ...)
 	t_args	*elem;
 	int		nb_pct;
 	int		len;
-	int 	ret;
+	int		ret;
 
 	if (format == NULL || *format == '\0')
 		return (0);

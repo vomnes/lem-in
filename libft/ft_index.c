@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_index.c                                         :+:      :+:    :+:   */
+/*   ft_index_of.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vomnes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 10:05:20 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/09 11:03:53 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/31 15:01:04 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "includes/libft.h"
+#include "includes/libft.h"
 
-int ft_index(const char *s, int c)
+int	ft_index(const char *s, int c)
 {
 	char *ptr;
 

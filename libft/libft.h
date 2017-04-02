@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vomnes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 15:09:57 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/09 10:36:26 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/31 14:58:49 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define ITALIC		"\x1b[3;m"
 # define UNDERLINE	"\x1b[4;m"
 # define RESET		"\x1b[0m"
-# define CLEAN		ft_putstr("\033[H\033[2J");
+# define CLEAN		"\033[H\033[2J"
 
 typedef struct		s_list
 {
@@ -60,7 +60,6 @@ char				*ft_strcat(char *dest, const char *src);
 char				*ft_strncat(char *dest, const char *src, size_t n);
 size_t				ft_strlcat(char *dest, const char *src, size_t size);
 char				*ft_strchr(const char *s, int c);
-int					ft_index(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strstr(const char *haystack, const char *needle);
 char				*ft_strnstr(const char *big, const char *little,
@@ -140,6 +139,6 @@ void				ft_putwstr(const wchar_t *wc);
 void				ft_putnwstr(const wchar_t *wc, size_t n);
 size_t				ft_wstrlen(const wchar_t *wc);
 
-int				get_next_line(const int fd, char **line);
+int					get_next_line(const int fd, char **line);
 
 #endif
