@@ -1,5 +1,6 @@
 # lem-in
-Elementary algorithmic project - Graph Traversal\n
+Elementary algorithmic project - Graph Traversal
+
 This project is meant to make you code an ant farm manager.
 The goal of this project is to find the quickest way to get n ants across the farm.
 It's a graph traversal problem, i use the **breadth-first search** algorithm implemented with **adjacency lists** (linked list).
