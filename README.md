@@ -2,7 +2,7 @@
 Elementary algorithmic project - Graph Traversal\n
 This project is meant to make you code an ant farm manager.
 The goal of this project is to find the quickest way to get n ants across the farm.
-It's a graph traversal problem, i use the breadth-first search algorithm implemented with adjacency lists (linked list).
+It's a graph traversal problem, i use the **breadth-first search** algorithm implemented with **adjacency lists** (linked list).
 
 ## Usage
 ```
@@ -18,10 +18,10 @@ the_rooms
 the_links
 ```
 
--The rooms, which are defined by: name coord_x coord_y.\n
--The links, which are defined by: name1-name2.\n
--All of it is broken by comments, which start with #.\n
--Lines that start with ## are commands modifying the properties of the line that comes right after.
+- The rooms, which are defined by: name coord_x coord_y.
+- The links, which are defined by: name1-name2.
+- All of it is broken by comments, which start with #.
+- Lines that start with ## are commands modifying the properties of the line that comes right after.
 
 ### Example
 ```
