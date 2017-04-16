@@ -24,7 +24,7 @@ int	ft_is_signed_integer(char *str)
 	else
 	{
 		value = ft_lltoi(str);
-		if (value > 2147483648 || value <= 0)
+		if (value > 2147483647 || value <= 0)
 			return (-1);
 		while (str[index])
 		{
